@@ -36,7 +36,6 @@ function footer(base) {
     <a class="contact-title" href="${contact}">
       <span class="contact-cta">Vamos criar<br><i>o próximo.</i></span>
       <span class="contact-symbol-box">
-        <img src="${asset(base, 'images/logo.svg')}" width="52" height="72" alt="" class="contact-symbol" aria-hidden="true">
         <span class="contact-arrow" aria-hidden="true">↗</span>
       </span>
     </a>
