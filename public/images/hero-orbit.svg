@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none">
+<defs>
+  <linearGradient id="metal" x1="250" y1="220" x2="920" y2="1010" gradientUnits="userSpaceOnUse"><stop stop-color="#f3f5df"/><stop offset=".12" stop-color="#9ca095"/><stop offset=".23" stop-color="#f6f7ee"/><stop offset=".38" stop-color="#73796c"/><stop offset=".48" stop-color="#e2e6d6"/><stop offset=".51" stop-color="#33382e"/><stop offset=".56" stop-color="#b3ba9f"/><stop offset=".7" stop-color="#e8edda"/><stop offset=".82" stop-color="#8e967e"/><stop offset="1" stop-color="#faffdf"/></linearGradient>
+  <linearGradient id="acid" x1="200" y1="200" x2="950" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#f1ffa5"/><stop offset=".45" stop-color="#d6ff64"/><stop offset="1" stop-color="#a6ce39"/></linearGradient>
+  <radialGradient id="ball" cx=".3" cy=".23" r=".8"><stop stop-color="#faffd7"/><stop offset=".28" stop-color="#d5fc65"/><stop offset=".7" stop-color="#8fae35"/><stop offset="1" stop-color="#3b4a16"/></radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="48"/></filter>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="5" dy="28" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter>
+</defs>
+<ellipse cx="600" cy="675" rx="292" ry="292" fill="#bedf66" opacity=".045" filter="url(#glow)"/>
+<g opacity=".13" stroke="#d2d8bb"><circle cx="600" cy="600" r="458"/><circle cx="600" cy="600" r="348"/><path d="M600 98V1102M98 600H1102"/><path d="M180 180L1020 1020M180 1020L1020 180" stroke-dasharray="4 12"/></g>
+<ellipse cx="600" cy="609" rx="395" ry="143" transform="rotate(-31 600 609)" stroke="url(#acid)" stroke-width="5"/>
+<g filter="url(#shadow)">
+  <ellipse cx="600" cy="600" rx="240" ry="350" transform="rotate(31 600 600)" stroke="url(#metal)" stroke-width="124"/>
+  <ellipse cx="600" cy="600" rx="240" ry="350" transform="rotate(31 600 600)" stroke="#f7fbe9" stroke-opacity=".28" stroke-width="1"/>
+</g>
+<path d="M304 871C133 877 142 748 333 632C522 518 775 464 923 509C1046 547 991 654 828 751" stroke="url(#acid)" stroke-width="6"/>
+<circle cx="913" cy="512" r="54" fill="url(#ball)" filter="url(#shadow)"/>
+<circle cx="296" cy="873" r="10" fill="#dfff83"/>
+<g stroke="#c6ccb3" stroke-opacity=".65"><path d="M181 340V362M170 351H192M963 879V901M952 890H974"/></g>
+</svg>

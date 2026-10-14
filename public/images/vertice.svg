@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
+<defs>
+  <linearGradient id="stage" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#292b25"/><stop offset="1" stop-color="#11130f"/></linearGradient>
+  <linearGradient id="paper" x1="400" y1="100" x2="1100" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#e7ff8d"/><stop offset=".55" stop-color="#d5fa55"/><stop offset="1" stop-color="#c7ef3b"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="180%" height="180%"><feDropShadow dx="30" dy="42" stdDeviation="30" flood-opacity=".5"/></filter>
+  <clipPath id="poster"><rect width="770" height="1010"/></clipPath>
+  <pattern id="grain" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#171b12" opacity=".12"/><circle cx="5" cy="5" r=".4" fill="white" opacity=".3"/></pattern>
+</defs>
+<rect width="1600" height="1200" fill="url(#stage)"/>
+<path d="M0 1050L1600 700M160 0L1600 1060" stroke="#b7c693" stroke-opacity=".08"/>
+<text x="80" y="99" fill="#b9bcaf" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">IDENTIDADE VISUAL / CULTURA</text>
+<text x="1519" y="1120" text-anchor="end" fill="#8b8f80" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">ESTUDO CONCEITUAL · 01</text>
+<g transform="translate(375 81) rotate(-7 385 505)" filter="url(#shadow)">
+  <rect width="770" height="1010" fill="url(#paper)"/>
+  <g clip-path="url(#poster)">
+    <rect x="36" y="35" width="698" height="2" fill="#171a14"/>
+    <text x="36" y="64" fill="#171a14" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.6">FESTIVAL DE NOVAS PERSPECTIVAS</text>
+    <text x="734" y="64" text-anchor="end" fill="#171a14" font-family="Arial,sans-serif" font-size="12" letter-spacing="1">EDIÇÃO IMAGINÁRIA / 001</text>
+    <text x="23" y="267" fill="#171a14" font-family="Arial Black,Arial,sans-serif" font-size="240" font-weight="900" letter-spacing="-20">VÉR</text>
+    <text x="25" y="470" fill="#171a14" font-family="Arial Black,Arial,sans-serif" font-size="240" font-weight="900" letter-spacing="-20">TICE</text>
+    <path d="M-64 526H250L405 803L545 526H847L454 1125H333Z" fill="#171a14"/>
+    <path d="M-2 528L383 1115M770 528L391 1115" stroke="#d9fa67" stroke-width="2"/>
+    <text transform="translate(515 675) rotate(-59)" fill="#d9fa67" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="4">O FUTURO TEM OUTROS ÂNGULOS.</text>
+    <g transform="translate(42 899)"><rect width="166" height="71" fill="#d9fa67"/><text x="12" y="26" fill="#171a14" font-family="Arial,sans-serif" font-size="11" letter-spacing="1.5">ARTE. SOM. IDEIAS.</text><text x="12" y="53" fill="#171a14" font-family="Arial,sans-serif" font-size="19" font-weight="700">24—26 / SET</text></g>
+    <circle cx="667" cy="908" r="52" fill="#d9fa67"/>
+    <path d="M640 908H694M667 881V935M648 889L686 927M648 927L686 889" stroke="#171a14" stroke-width="3"/>
+    <rect width="770" height="1010" fill="url(#grain)"/>
+  </g>
+</g>
+<g transform="translate(1156 342) rotate(10)"><rect width="210" height="330" fill="#e6e7de"/><text x="22" y="38" fill="#171a14" font-family="Arial,sans-serif" font-size="11" letter-spacing="1.5">VÉRTICE / ACESSO</text><path d="M23 73H83L110 130L137 73H193L121 228H96Z" fill="#191c14"/><text x="22" y="274" fill="#171a14" font-family="Arial,sans-serif" font-size="13" font-weight="700">TODOS OS ÂNGULOS.</text><path d="M22 292H186" stroke="#171a14" stroke-width="2"/><text x="22" y="312" fill="#171a14" font-family="Arial,sans-serif" font-size="9" letter-spacing="2">PROJETO DEMONSTRATIVO</text></g>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfólio editorial de direção de arte e design — Icaro Braga",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test"
+  }
+}

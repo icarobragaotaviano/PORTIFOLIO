@@ -39,7 +39,7 @@ Edite `src/content.mjs` para atualizar os dados do portfólio:
 - `site.description`: apresentação usada pelo site.
 - `site.github`: perfil ou endereço de contato no GitHub.
 - `site.email`: e-mail para contato. Quando está vazio, o contato usa o GitHub.
-- A marca tipográfica da abertura também pode ser ajustada na configuração do site.
+- `site.wordmark.primary` e `site.wordmark.secondary`: marca tipográfica e assinatura da abertura.
 - `projects`: títulos, categorias, textos, imagens, serviços e entregas de cada case.
 
 Os projetos usam `status: 'demo'` para estudos demonstrativos e `status: 'placeholder'` para espaços reservados. Preserve as notas de contexto enquanto o conteúdo for fictício. Evite preencher ano, cliente, créditos ou resultados com informações que não foram confirmadas.
@@ -102,6 +102,8 @@ node scripts/build.mjs --base /PORTIFOLIO/
 ```
 
 Publique a pasta `dist/` gerada com esse caminho base. Para voltar ao preview local na raiz, execute novamente `npm run build` sem `BASE_PATH`.
+
+Para testar o build de Pages localmente: `BASE_PATH=/PORTIFOLIO/ npm run preview`, depois abra `http://localhost:4173/PORTIFOLIO/`.
 
 ## Verificação antes de publicar
 
