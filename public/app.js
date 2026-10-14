@@ -53,3 +53,95 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     observer.observe(element);
   });
 }
+
+// Régua de rolagem e rastreamento de seção animado para o topo
+const ruler = document.querySelector('#scroll-ruler');
+const rulerIndicator = document.querySelector('#ruler-indicator');
+const rulerPct = document.querySelector('#ruler-pct');
+const trackerNumber = document.querySelector('#tracker-number');
+const trackerTitle = document.querySelector('#tracker-title');
+const headerTracker = document.querySelector('#header-section-tracker');
+const rulerStops = document.querySelectorAll('.ruler-stop');
+
+if (ruler && rulerIndicator) {
+  const sections = [
+    { id: 'inicio', element: document.querySelector('.hero') || document.querySelector('#inicio'), number: '00', label: 'INÍCIO' },
+    { id: 'projetos', element: document.querySelector('#projetos'), number: '01', label: 'PROJETOS' },
+    { id: 'sobre', element: document.querySelector('#sobre'), number: '02', label: 'SOBRE' },
+    { id: 'contato', element: document.querySelector('#contato'), number: '03', label: 'CONTATO' }
+  ].filter((s) => s.element);
+
+  let currentSection = 'inicio';
+
+  const flyToHeader = (originStop, active) => {
+    if (!originStop || !headerTracker) return;
+    const originRect = originStop.getBoundingClientRect();
+    const destRect = headerTracker.getBoundingClientRect();
+
+    const pill = document.createElement('div');
+    pill.className = 'flying-section-pill';
+    pill.textContent = `${active.number} // ${active.label}`;
+    pill.style.position = 'fixed';
+    pill.style.right = '40px';
+    pill.style.top = `${originRect.top}px`;
+    document.body.appendChild(pill);
+
+    const deltaX = destRect.left + (destRect.width / 2) - (window.innerWidth - 40);
+    const deltaY = destRect.top + (destRect.height / 2) - originRect.top;
+
+    const anim = pill.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${deltaX * 0.5}px, ${deltaY * 0.3}px) scale(1.1)`, opacity: 0.95, offset: 0.5 },
+      { transform: `translate(${deltaX}px, ${deltaY}px) scale(0.95)`, opacity: 0 }
+    ], {
+      duration: 480,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+    });
+
+    anim.onfinish = () => {
+      pill.remove();
+      if (trackerNumber) trackerNumber.textContent = active.number;
+      if (trackerTitle) trackerTitle.textContent = active.label;
+      headerTracker.classList.remove('pulse-in');
+      void headerTracker.offsetWidth;
+      headerTracker.classList.add('pulse-in');
+    };
+  };
+
+  const updateRuler = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(Math.max(window.scrollY / docHeight, 0), 1) : 0;
+
+    rulerIndicator.style.top = `${progress * 100}%`;
+    if (rulerPct) rulerPct.textContent = `${String(Math.round(progress * 100)).padStart(2, '0')}%`;
+
+    const scrollPos = window.scrollY + window.innerHeight * 0.35;
+    let active = sections[0];
+    for (const section of sections) {
+      const top = section.element.getBoundingClientRect().top + window.scrollY;
+      if (scrollPos >= top) {
+        active = section;
+      }
+    }
+
+    if (active && active.id !== currentSection) {
+      currentSection = active.id;
+
+      rulerStops.forEach((stop) => {
+        stop.classList.toggle('is-active', stop.dataset.section === currentSection);
+      });
+
+      const activeStop = document.querySelector(`.ruler-stop[data-section="${currentSection}"]`);
+      if (activeStop && headerTracker && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        flyToHeader(activeStop, active);
+      } else {
+        if (trackerNumber) trackerNumber.textContent = active.number;
+        if (trackerTitle) trackerTitle.textContent = active.label;
+      }
+    }
+  };
+
+  window.addEventListener('scroll', updateRuler, { passive: true });
+  window.addEventListener('resize', updateRuler, { passive: true });
+  updateRuler();
+}

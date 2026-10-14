@@ -40,6 +40,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 30px;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {
@@ -170,13 +177,17 @@ i {
    ========================================================================== */
 
 .site-header {
-  height: 110px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  position: relative;
-  z-index: 20;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(1, 1, 1, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gray-border);
 }
 
@@ -187,29 +198,6 @@ i {
   position: relative;
 }
 
-.brand-mark-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--gray-line);
-  background: var(--black-800);
-  border-radius: 6px;
-  transition: border-color 0.25s, transform 0.25s;
-}
-
-.wordmark:hover .brand-mark-wrap {
-  border-color: var(--accent);
-  transform: rotate(4deg);
-}
-
-.brand-symbol {
-  width: 22px;
-  height: 31px;
-  object-fit: contain;
-}
-
 .wordmark-titles {
   display: flex;
   flex-direction: column;
@@ -217,7 +205,7 @@ i {
 
 .wordmark-name {
   font-family: var(--sans);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -237,15 +225,63 @@ i {
   margin-top: 4px;
 }
 
+.header-section-tracker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--black-800);
+  border: 1px solid var(--gray-line);
+  color: var(--paper);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.header-section-tracker .tracker-prefix {
+  color: var(--accent);
+}
+
+.header-section-tracker .tracker-number {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.header-section-tracker .tracker-title {
+  color: var(--paper);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.header-section-tracker.pulse-in {
+  animation: tracker-pulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 212, 1, 0.25);
+}
+
+@keyframes tracker-pulse {
+  0% { transform: scale(0.92); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
 .header-caption {
   font-family: var(--mono);
   font-size: 11px;
   line-height: 1.5;
-  margin-left: 20px;
+  margin-left: 16px;
   margin-right: auto;
   color: var(--gray-muted);
   border-left: 1px solid var(--gray-border);
-  padding-left: 18px;
+  padding-left: 16px;
+}
+
+@media (max-width: 1150px) {
+  .header-caption {
+    display: none;
+  }
 }
 
 .site-header nav {
@@ -323,21 +359,20 @@ nav a > span {
 
 .hero-composition {
   position: relative;
-  padding-top: 40px;
-  min-height: 480px;
-  display: flex;
-  align-items: center;
+  padding-top: clamp(40px, 8vh, 90px);
+  padding-bottom: clamp(20px, 4vh, 60px);
+  min-height: auto;
+  display: block;
 }
 
 .hero h1 {
   position: relative;
   z-index: 2;
-  font-size: clamp(74px, 10.5vw, 172px);
-  line-height: 0.94;
+  font-size: clamp(84px, 14vw, 210px);
+  line-height: 0.9;
   letter-spacing: -0.06em;
   font-weight: 700;
-  max-width: 1050px;
-  pointer-events: none;
+  max-width: 100%;
   text-transform: uppercase;
 }
 
@@ -346,41 +381,168 @@ nav a > span {
   white-space: nowrap;
 }
 
-.hero-object {
-  position: absolute;
-  width: 48%;
-  right: -2%;
-  top: -4%;
-  z-index: 1;
+/* ==========================================================================
+   SCROLL RULER & ANIMATED FLYING SECTION PILL
+   ========================================================================== */
+
+.scroll-ruler {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 54px;
+  z-index: 45;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.hero-object img {
+@media (max-width: 900px) {
+  .scroll-ruler {
+    display: none;
+  }
+}
+
+.ruler-track {
+  position: relative;
   width: 100%;
-  animation: orbit-entry 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  height: calc(100vh - 140px);
+  margin-block: auto;
+  pointer-events: auto;
 }
 
-.object-caption {
+.ruler-ticks {
   position: absolute;
-  bottom: 8%;
-  left: 38%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  border-right: 1px solid var(--gray-line);
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.15) 1px, transparent 1px, transparent 12px),
+    repeating-linear-gradient(to bottom, var(--accent) 0, var(--accent) 1px, transparent 1px, transparent 60px);
+  background-size: 8px 100%, 14px 100%;
+  background-position: right top, right top;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+}
+
+.ruler-indicator {
+  position: absolute;
+  right: 0;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  transform: translateY(-50%);
+  transition: top 0.08s linear;
+  will-change: top;
+  z-index: 2;
+}
+
+.ruler-indicator-pct {
+  font-family: var(--mono);
   font-size: 9px;
-  color: var(--gray-muted);
-  white-space: nowrap;
-  transform: rotate(-90deg);
-  transform-origin: left bottom;
+  color: var(--accent);
+  background: var(--black-900);
+  padding: 1px 4px;
+  border: 1px solid rgba(255, 212, 1, 0.3);
+  border-radius: 2px;
 }
 
-.hero-asterisk {
-  color: var(--accent);
-  font-size: 50px;
-  position: absolute;
-  left: 48%;
-  top: 24px;
-  transform: rotate(-10deg);
-  pointer-events: none;
-  opacity: 0.8;
+.ruler-indicator-needle {
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
 }
+
+.ruler-sections {
+  position: absolute;
+  right: 22px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 40px;
+}
+
+.ruler-stop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  transition: color 0.25s, transform 0.25s;
+  cursor: pointer;
+}
+
+.ruler-stop-label {
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.25s, transform 0.25s;
+  white-space: nowrap;
+  background: var(--black-800);
+  border: 1px solid var(--gray-line);
+  padding: 4px 8px;
+  border-radius: 3px;
+  color: var(--paper);
+}
+
+.ruler-stop:hover .ruler-stop-label,
+.ruler-stop.is-active .ruler-stop-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ruler-stop.is-active {
+  color: var(--accent);
+}
+
+.ruler-stop.is-active .ruler-stop-label {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ruler-stop-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--black-800);
+  border: 1px solid var(--gray-line);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.ruler-stop:hover .ruler-stop-pip,
+.ruler-stop.is-active .ruler-stop-pip {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.4);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.flying-section-pill {
+  z-index: 100;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--black-900);
+  background: var(--accent);
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(255, 212, 1, 0.4);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
 
 .hero-bottom {
   display: flex;

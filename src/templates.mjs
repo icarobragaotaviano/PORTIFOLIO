@@ -13,14 +13,16 @@ const demoCount = String(projects.filter((project) => project.status === 'demo')
 function header(base, isHome) {
   return `<header class="site-header wrap">
     <a class="wordmark" href="${base}" aria-label="${escape(site.name)} — início">
-      <span class="brand-mark-wrap">
-        <img src="${asset(base, 'images/logo.svg')}" width="26" height="36" alt="" class="brand-symbol" aria-hidden="true">
-      </span>
       <span class="wordmark-titles">
         <span class="wordmark-name">${escape(site.wordmark.primary)}<span class="wordmark-dot">.</span></span>
         <span class="wordmark-sub">${escape(site.wordmark.secondary)}</span>
       </span>
     </a>
+    <div class="header-section-tracker" id="header-section-tracker" aria-live="polite">
+      <span class="tracker-prefix">//</span>
+      <span class="tracker-number" id="tracker-number">00</span>
+      <span class="tracker-title" id="tracker-title">INÍCIO</span>
+    </div>
     <p class="header-caption">Ideias com intenção.<br>Design com personalidade.</p>
     <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" hidden>Menu <span aria-hidden="true">+</span></button>
     <nav id="navigation" aria-label="Navegação principal"><a href="${isHome ? '' : base}#projetos">Projetos <span>${demoCount}</span></a><a href="${isHome ? '' : base}#sobre">Sobre</a><a class="nav-contact" href="#contato">Contato ${arrow}</a></nav>
@@ -67,9 +69,36 @@ function projectCard(project, base) {
 
 export function home(base) {
   return layout({ base, isHome: true, body: `
+    <aside class="scroll-ruler" id="scroll-ruler" aria-label="Régua de navegação e rolagem">
+      <div class="ruler-track">
+        <div class="ruler-ticks" aria-hidden="true"></div>
+        <div class="ruler-indicator" id="ruler-indicator" aria-hidden="true">
+          <span class="ruler-indicator-pct" id="ruler-pct">00%</span>
+          <span class="ruler-indicator-needle"></span>
+        </div>
+        <nav class="ruler-sections" aria-label="Navegação por régua">
+          <a href="#inicio" class="ruler-stop is-active" data-section="inicio" data-number="00" data-label="INÍCIO" title="00 // INÍCIO">
+            <span class="ruler-stop-label">00 // INÍCIO</span>
+            <span class="ruler-stop-pip"></span>
+          </a>
+          <a href="#projetos" class="ruler-stop" data-section="projetos" data-number="01" data-label="PROJETOS" title="01 // PROJETOS">
+            <span class="ruler-stop-label">01 // PROJETOS</span>
+            <span class="ruler-stop-pip"></span>
+          </a>
+          <a href="#sobre" class="ruler-stop" data-section="sobre" data-number="02" data-label="SOBRE" title="02 // SOBRE">
+            <span class="ruler-stop-label">02 // SOBRE</span>
+            <span class="ruler-stop-pip"></span>
+          </a>
+          <a href="#contato" class="ruler-stop" data-section="contato" data-number="03" data-label="CONTATO" title="03 // CONTATO">
+            <span class="ruler-stop-label">03 // CONTATO</span>
+            <span class="ruler-stop-pip"></span>
+          </a>
+        </nav>
+      </div>
+    </aside>
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-top"><span class="eyebrow">PORTFÓLIO // ${escape(site.role.toUpperCase())}</span><span class="hero-edition">VOL. 01 — EXPERIMENTOS VISUAIS</span></div>
-      <div class="hero-composition"><h1 id="hero-title">O olhar<br>muda <i>tudo.</i></h1><div class="hero-object"><img src="${asset(base, 'images/hero-orbit.svg')}" width="1200" height="1200" alt="Escultura gráfica abstrata de aro metálico com acentos em ouro solar" fetchpriority="high"><span class="object-caption">FIG. 01 — MUDAR A PERSPECTIVA</span></div><span class="hero-asterisk" aria-hidden="true">✳</span></div>
+      <div class="hero-composition"><h1 id="hero-title">O olhar<br>muda <i>tudo.</i></h1></div>
       <div class="hero-bottom"><p>Estratégia na ideia.<br>Liberdade na forma.<br><span>Design para sair do lugar-comum.</span></p><a class="round-link" href="#projetos"><span>Explore os projetos</span><span class="round-arrow" aria-hidden="true">↓</span></a><span class="hero-index">SCROLL PARA DESCOBRIR<br>↓</span></div>
     </section>
     <div class="discipline-strip" aria-label="Áreas criativas"><span>DIREÇÃO DE ARTE</span><b aria-hidden="true">✳</b><span>IDENTIDADE VISUAL</span><b aria-hidden="true">✳</b><span>CONCEITO & CAMPANHA</span><b aria-hidden="true">✳</b><span>DESIGN EDITORIAL</span><b aria-hidden="true">✳</b></div>
