@@ -1,43 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
 <defs>
-  <linearGradient id="back" x1="200" y1="0" x2="1400" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#fc713c"/><stop offset="1" stop-color="#e34822"/></linearGradient>
-  <linearGradient id="cream" x1="0" y1="0" x2="400" y2="700" gradientUnits="userSpaceOnUse"><stop stop-color="#fff4d9"/><stop offset=".5" stop-color="#f4e6c7"/><stop offset="1" stop-color="#dfc9a1"/></linearGradient>
-  <linearGradient id="side" x1="0" y1="0" x2="100" y2="0"><stop stop-color="#bb9d71"/><stop offset="1" stop-color="#e5d0aa"/></linearGradient>
-  <linearGradient id="bottle" x1="0" y1="0" x2="290" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#422236"/><stop offset=".35" stop-color="#68364c"/><stop offset=".55" stop-color="#5d2d43"/><stop offset="1" stop-color="#321a29"/></linearGradient>
-  <linearGradient id="cap" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#b86937"/><stop offset=".32" stop-color="#e9a86d"/><stop offset=".72" stop-color="#c6824c"/><stop offset="1" stop-color="#a45f35"/></linearGradient>
-  <filter id="shadow" x="-40%" y="-30%" width="200%" height="200%"><feDropShadow dx="20" dy="35" stdDeviation="24" flood-color="#69231b" flood-opacity=".35"/></filter>
-  <filter id="soft"><feGaussianBlur stdDeviation="25"/></filter>
+  <linearGradient id="cs-bg" x1="200" y1="0" x2="1400" y2="1200" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#181818"/>
+    <stop offset="1" stop-color="#010101"/>
+  </linearGradient>
+  <linearGradient id="cs-warm" x1="0" y1="0" x2="430" y2="765" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#ffffff"/>
+    <stop offset=".4" stop-color="#f7f4ef"/>
+    <stop offset="1" stop-color="#e8e2d5"/>
+  </linearGradient>
+  <linearGradient id="cs-bottle" x1="0" y1="0" x2="290" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#1a1a1a"/>
+    <stop offset=".35" stop-color="#333333"/>
+    <stop offset=".55" stop-color="#2a2a2a"/>
+    <stop offset="1" stop-color="#101010"/>
+  </linearGradient>
+  <linearGradient id="cs-cap" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#ffd401"/>
+    <stop offset=".4" stop-color="#ffe76b"/>
+    <stop offset="1" stop-color="#f5b802"/>
+  </linearGradient>
+  <filter id="cs-shadow" x="-30%" y="-30%" width="170%" height="170%">
+    <feDropShadow dx="24" dy="40" stdDeviation="28" flood-color="#000000" flood-opacity=".75"/>
+  </filter>
 </defs>
-<rect width="1600" height="1200" fill="url(#back)"/>
-<path d="M0 910C450 760 1040 825 1600 666V1200H0Z" fill="#e65a2b"/>
-<ellipse cx="865" cy="1038" rx="453" ry="70" fill="#75281f" opacity=".28" filter="url(#soft)"/>
-<text x="80" y="99" fill="#4a2637" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">IDENTIDADE &amp; EMBALAGEM / CASA SOL</text>
-<text x="1520" y="1120" text-anchor="end" fill="#532536" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">MARCA FICTÍCIA · 02</text>
-<circle cx="1279" cy="287" r="133" fill="#f7e8c5"/>
-<path d="M1146 287H1412M1279 154V420M1185 193L1373 381M1185 381L1373 193" stroke="#ee6334" stroke-width="2"/>
-<g transform="translate(470 256) rotate(-10 230 390)" filter="url(#shadow)">
-  <path d="M430 25L508 0V730L430 790Z" fill="url(#side)"/>
-  <path d="M0 25L78 0H508L430 25Z" fill="#fff2d4"/>
-  <rect y="25" width="430" height="765" fill="url(#cream)"/>
-  <text x="35" y="70" fill="#4b263b" font-family="Arial,sans-serif" font-size="12" letter-spacing="2.5">SOL EM CADA DETALHE.</text>
-  <text x="27" y="231" fill="#4b263b" font-family="Georgia,serif" font-size="147" letter-spacing="-8">casa</text>
-  <text x="27" y="370" fill="#4b263b" font-family="Georgia,serif" font-size="181" letter-spacing="-9">sol.</text>
-  <g transform="translate(215 511)"><circle r="90" fill="#ed6333"/><circle r="54" fill="#f1e1be"/><path d="M0-111V111M-111 0H111M-78-78L78 78M-78 78L78-78" stroke="#ed6333" stroke-width="8"/><circle r="23" fill="#ed6333"/></g>
-  <path d="M35 658H395" stroke="#4b263b"/>
-  <text x="35" y="687" fill="#4b263b" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">OBJETOS PARA HABITAR O TEMPO</text>
-  <text x="35" y="727" fill="#4b263b" font-family="Arial,sans-serif" font-size="16">Âmbar &amp; flor de laranjeira</text>
-  <text x="35" y="755" fill="#4b263b" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.6">CONCEITO DE EMBALAGEM · 250 ML</text>
+<rect width="1600" height="1200" fill="url(#cs-bg)"/>
+
+<!-- Geometric Backdrop Arch in Solar Yellow -->
+<path d="M0 920C450 780 1040 840 1600 680V1200H0Z" fill="#1c1c1c"/>
+<circle cx="1280" cy="290" r="140" fill="#ffd401" opacity=".9"/>
+<path d="M1140 290H1420M1280 150V430M1180 190L1380 390M1180 390L1380 190" stroke="#010101" stroke-width="2"/>
+
+<text x="80" y="99" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">CAMPANHA // PACKAGING &amp; LIFESTYLE</text>
+<text x="1520" y="1120" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">CASE DEMONSTRATIVO [ 02 ]</text>
+
+<!-- Box Package -->
+<g transform="translate(460 250) rotate(-8 230 390)" filter="url(#cs-shadow)">
+  <rect y="25" width="430" height="765" fill="url(#cs-warm)" rx="4"/>
+  <rect y="25" width="430" height="18" fill="#ffd401"/>
+  
+  <text x="35" y="85" fill="#101010" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2.5">SOL EM CADA DETALHE.</text>
+  <text x="30" y="235" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="135" font-weight="700" letter-spacing="-8">casa</text>
+  <text x="30" y="365" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="160" font-weight="700" letter-spacing="-9">sol<tspan fill="#ffd401">.</tspan></text>
+  
+  <!-- Graphic Sun Device -->
+  <g transform="translate(215 510)">
+    <circle r="92" fill="#ffd401"/>
+    <circle r="56" fill="#f7f4ef"/>
+    <path d="M0-110V110M-110 0H110M-78-78L78 78M-78 78L78-78" stroke="#010101" stroke-width="6"/>
+    <circle r="22" fill="#ffd401"/>
+  </g>
+  
+  <path d="M35 660H395" stroke="#3a3a3a"/>
+  <text x="35" y="692" fill="#101010" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="600" letter-spacing="2">OBJETOS PARA HABITAR O TEMPO</text>
+  <text x="35" y="730" fill="#3a3a3a" font-family="'Space Grotesk',sans-serif" font-size="17">Âmbar &amp; flor de laranjeira</text>
+  <text x="35" y="760" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.6">CONCEITO DE EMBALAGEM // 250 ML</text>
 </g>
-<g transform="translate(918 486) rotate(9 145 270)" filter="url(#shadow)">
-  <path d="M65 55H225V123C225 150 290 160 290 215V493C290 529 265 548 228 548H62C23 548 0 529 0 493V215C0 160 65 150 65 123Z" fill="url(#bottle)"/>
-  <rect x="54" y="0" width="181" height="83" rx="15" fill="url(#cap)"/>
-  <path d="M68 16H221M68 26H221M68 36H221M68 46H221M68 56H221M68 66H221" stroke="#8d522f" stroke-opacity=".2"/>
-  <rect x="16" y="226" width="258" height="251" rx="1" fill="#efe2c1"/>
-  <text x="36" y="307" fill="#4b263b" font-family="Georgia,serif" font-size="79" letter-spacing="-5">casa sol.</text>
-  <circle cx="145" cy="371" r="29" fill="#ed6333"/>
-  <path d="M145 329V413M103 371H187" stroke="#ed6333" stroke-width="4"/>
-  <text x="145" y="445" text-anchor="middle" fill="#4b263b" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.5">UM CONVITE A FICAR.</text>
-  <path d="M20 207V486C20 508 30 520 50 525" stroke="#a46b7f" stroke-width="5" opacity=".24"/>
+
+<!-- Bottle Object -->
+<g transform="translate(930 480) rotate(8 145 270)" filter="url(#cs-shadow)">
+  <path d="M65 55H225V123C225 150 290 160 290 215V493C290 529 265 548 228 548H62C23 548 0 529 0 493V215C0 160 65 150 65 123Z" fill="url(#cs-bottle)"/>
+  <rect x="54" y="0" width="181" height="83" rx="14" fill="url(#cs-cap)"/>
+  <rect x="16" y="226" width="258" height="251" rx="2" fill="#f7f4ef"/>
+  
+  <text x="34" y="305" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="68" font-weight="700" letter-spacing="-4">casa sol.</text>
+  <circle cx="145" cy="370" r="30" fill="#ffd401"/>
+  <path d="M145 328V412M103 370H187" stroke="#010101" stroke-width="4"/>
+  <text x="145" y="445" text-anchor="middle" fill="#101010" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.5">UM CONVITE A FICAR.</text>
 </g>
-<g transform="translate(180 771) rotate(-18)"><ellipse cx="0" cy="0" rx="120" ry="45" fill="#653847"/><path d="M-120 0V70C-120 95 120 95 120 70V0Z" fill="#4b263b"/><ellipse cx="0" cy="0" rx="120" ry="45" fill="#f4e5c2"/><ellipse cx="0" cy="0" rx="83" ry="30" fill="#e6cda4"/><path d="M0-8V-26" stroke="#653847" stroke-width="4"/></g>
 </svg>

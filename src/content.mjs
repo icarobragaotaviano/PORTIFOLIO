@@ -1,12 +1,12 @@
 export const site = {
   name: 'Icaro Braga',
   initials: 'IB',
-  wordmark: { primary: 'icaro', secondary: 'BRAGA / DESIGN' },
+  wordmark: { primary: 'icaro braga', secondary: 'DIREÇÃO DE ARTE // DESIGN' },
   role: 'Direção de arte & design',
   github: 'https://github.com/icarobragaotaviano',
   email: '',
   description:
-    'Ideias que ocupam espaço. Um portfólio de direção de arte, identidade e narrativas visuais — em construção, com estudos demonstrativos abertos a novas possibilidades.',
+    'Ideias com intenção e arquitetura visual de alto impacto. Portfólio de direção de arte, identidade e experiências visuais contemporâneas.',
 };
 
 export const projects = [
@@ -20,7 +20,7 @@ export const projects = [
     status: 'demo',
     image: '/images/vertice.svg',
     alt: 'Composição gráfica demonstrativa de VÉRTICE, um festival cultural fictício.',
-    accent: '#b5ff46',
+    accent: '#ffd401',
     services: ['Direção de arte', 'Identidade visual', 'Sistema gráfico'],
     intro:
       'Um festival cultural fictício onde música, imagem e cidade se encontram. Uma identidade pensada para estar sempre em movimento.',
@@ -44,7 +44,7 @@ export const projects = [
     status: 'demo',
     image: '/images/casa-sol.svg',
     alt: 'Composição gráfica demonstrativa de Casa Sol, uma marca fictícia de objetos e lifestyle.',
-    accent: '#ff6b35',
+    accent: '#f5b802',
     services: ['Conceito de campanha', 'Direção de arte', 'Linguagem visual'],
     intro:
       'Uma campanha conceitual para uma marca fictícia de objetos e lifestyle. Um convite a perceber beleza nos pequenos rituais de casa.',
@@ -68,7 +68,7 @@ export const projects = [
     status: 'demo',
     image: '/images/entrelinhas.svg',
     alt: 'Composição tipográfica demonstrativa de Entrelinhas, uma publicação cultural fictícia.',
-    accent: '#b7a1ff',
+    accent: '#d9d9d9',
     services: ['Direção de arte', 'Design editorial', 'Exploração tipográfica'],
     intro:
       'Uma publicação cultural fictícia sobre o que escapa à primeira leitura. Palavra, imagem e silêncio dividem o mesmo espaço.',
@@ -92,7 +92,7 @@ export const projects = [
     status: 'placeholder',
     image: null,
     alt: '',
-    accent: '#c9ab82',
+    accent: '#ffe76b',
     services: [],
     intro:
       'Espaço reservado para uma possível apresentação de WineGourmet. Conteúdo, escopo e créditos ainda não foram fornecidos.',

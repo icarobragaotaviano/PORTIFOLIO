@@ -1,42 +1,82 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#1949df"/><stop offset="1" stop-color="#0d2daf"/></linearGradient>
-  <linearGradient id="leftpaper" x1="0" y1="0" x2="575" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#f2f3ef"/><stop offset=".85" stop-color="#fafbf8"/><stop offset="1" stop-color="#c8cbd3"/></linearGradient>
-  <linearGradient id="rightpaper" x1="575" y1="0" x2="1150" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#b3b8c5"/><stop offset=".07" stop-color="#fafbf8"/><stop offset="1" stop-color="#e7e9e5"/></linearGradient>
-  <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f8ff"/><stop offset=".17" stop-color="#929eb7"/><stop offset=".28" stop-color="#fff"/><stop offset=".47" stop-color="#d2d7e0"/><stop offset=".52" stop-color="#3e537c"/><stop offset=".62" stop-color="#b3bfd7"/><stop offset=".8" stop-color="#f4f6ff"/><stop offset="1" stop-color="#6b7f9f"/></linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="18" dy="34" stdDeviation="30" flood-color="#04114f" flood-opacity=".6"/></filter>
-  <clipPath id="right"><rect x="575" width="575" height="825"/></clipPath>
+  <linearGradient id="el-bg" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#181818"/>
+    <stop offset="1" stop-color="#010101"/>
+  </linearGradient>
+  <linearGradient id="el-left" x1="0" y1="0" x2="575" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#ffffff"/>
+    <stop offset=".85" stop-color="#f7f4ef"/>
+    <stop offset="1" stop-color="#d9d9d9"/>
+  </linearGradient>
+  <linearGradient id="el-right" x1="575" y1="0" x2="1150" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#c8c8c8"/>
+    <stop offset=".07" stop-color="#f7f4ef"/>
+    <stop offset="1" stop-color="#ffffff"/>
+  </linearGradient>
+  <linearGradient id="el-gold" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#fff176"/>
+    <stop offset=".4" stop-color="#ffd401"/>
+    <stop offset="1" stop-color="#f5b802"/>
+  </linearGradient>
+  <filter id="el-shadow" x="-30%" y="-30%" width="170%" height="180%">
+    <feDropShadow dx="22" dy="38" stdDeviation="32" flood-color="#000000" flood-opacity=".8"/>
+  </filter>
+  <clipPath id="el-right-clip"><rect x="575" width="575" height="825"/></clipPath>
 </defs>
-<rect width="1600" height="1200" fill="url(#bg)"/>
-<text x="80" y="99" fill="#b8caff" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">DIREÇÃO DE ARTE / PROJETO EDITORIAL</text>
-<text x="1520" y="1120" text-anchor="end" fill="#a1b7ff" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">PUBLICAÇÃO FICTÍCIA · 03</text>
-<g transform="translate(225 181) rotate(6 575 412)" filter="url(#shadow)">
-  <path d="M-4 8H1155V831H-4Z" fill="#c7cacf"/>
-  <path d="M0 0H575V825H0Z" fill="url(#leftpaper)"/>
-  <path d="M575 0H1150V825H575Z" fill="url(#rightpaper)"/>
-  <text x="30" y="38" fill="#123bd4" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">ENTRELINHAS</text>
-  <text x="543" y="38" text-anchor="end" fill="#123bd4" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.5">VOLUME 01 / CULTURA VISUAL</text>
-  <path d="M30 53H543" stroke="#123bd4"/>
-  <text x="25" y="174" fill="#113bd6" font-family="Georgia,serif" font-size="119" letter-spacing="-8">O espaço</text>
-  <text x="25" y="281" fill="#113bd6" font-family="Georgia,serif" font-size="119" letter-spacing="-8">entre as</text>
-  <text x="18" y="389" fill="#113bd6" font-family="Georgia,serif" font-size="119" font-style="italic" letter-spacing="-8">ideias.</text>
-  <text x="30" y="461" fill="#173acf" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing=".3">QUANDO O VAZIO TAMBÉM DIZ.</text>
-  <text x="30" y="503" fill="#313944" font-family="Arial,sans-serif" font-size="14"><tspan x="30" dy="0">Uma investigação visual sobre pausas, encontros</tspan><tspan x="30" dy="22">e tudo aquilo que acontece entre uma coisa e outra.</tspan><tspan x="30" dy="22">O olhar demora. A página respira. A ideia encontra</tspan><tspan x="30" dy="22">espaço para ser mais do que a primeira impressão.</tspan></text>
-  <g stroke="#9ca3af" stroke-width="2"><path d="M30 632H259M30 644H248M30 656H259M30 668H242M30 680H259M30 692H226M30 704H259M30 716H247M30 728H210"/><path d="M290 632H525M290 644H512M290 656H525M290 668H519M290 680H525M290 692H495M290 704H525M290 716H510M290 728H479"/></g>
-  <path d="M30 776H543" stroke="#123bd4"/>
-  <text x="30" y="799" fill="#123bd4" font-family="Arial,sans-serif" font-size="10" letter-spacing="1">008</text>
-  <text x="543" y="799" text-anchor="end" fill="#123bd4" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.3">ESTUDO EDITORIAL DEMONSTRATIVO</text>
-  <g clip-path="url(#right)">
-    <rect x="600" y="25" width="525" height="747" fill="#1645db"/>
-    <ellipse cx="869" cy="382" rx="167" ry="285" transform="rotate(31 869 382)" fill="none" stroke="#04186e" stroke-width="95" opacity=".38"/>
-    <ellipse cx="855" cy="364" rx="167" ry="285" transform="rotate(31 855 364)" fill="none" stroke="url(#chrome)" stroke-width="89"/>
-    <ellipse cx="855" cy="364" rx="167" ry="285" transform="rotate(31 855 364)" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="1"/>
-    <text x="622" y="725" fill="#e6ebff" font-family="Arial Black,Arial,sans-serif" font-size="122" font-weight="900" letter-spacing="-8">EN[TRE]</text>
-    <text x="621" y="64" fill="#d7e0ff" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">FORMA LIVRE / COMPOSIÇÃO Nº 01</text>
-    <path d="M1078 80V129M1054 105H1102" stroke="#d7e0ff"/>
+<rect width="1600" height="1200" fill="url(#el-bg)"/>
+
+<text x="80" y="99" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">DIREÇÃO DE ARTE // PROJETO EDITORIAL</text>
+<text x="1520" y="1120" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">CASE DEMONSTRATIVO [ 03 ]</text>
+
+<!-- Open Editorial Magazine Spread -->
+<g transform="translate(225 180) rotate(5 575 412)" filter="url(#el-shadow)">
+  <path d="M-4 8H1155V831H-4Z" fill="#2a2a2a"/>
+  <path d="M0 0H575V825H0Z" fill="url(#el-left)"/>
+  <path d="M575 0H1150V825H575Z" fill="url(#el-right)"/>
+  
+  <!-- Left Page -->
+  <text x="35" y="42" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="700" letter-spacing="2">ENTRELINHAS</text>
+  <text x="540" y="42" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">VOLUME 01 // CULTURA VISUAL</text>
+  <path d="M35 55H540" stroke="#ffd401" stroke-width="2"/>
+  
+  <text x="30" y="175" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="105" font-weight="700" letter-spacing="-6">O espaço</text>
+  <text x="30" y="275" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="105" font-weight="700" letter-spacing="-6">entre as</text>
+  <text x="30" y="375" fill="#f5b802" font-family="'Space Grotesk',sans-serif" font-size="105" font-weight="700" font-style="italic" letter-spacing="-6">ideias.</text>
+  
+  <text x="35" y="450" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="700" letter-spacing="1">QUANDO O VAZIO TAMBÉM DIZ.</text>
+  
+  <text x="35" y="495" fill="#3a3a3a" font-family="'Space Grotesk',sans-serif" font-size="15" line-height="24">
+    <tspan x="35" dy="0">Uma investigação visual sobre pausas, encontros</tspan>
+    <tspan x="35" dy="24">e tudo aquilo que acontece entre uma coisa e outra.</tspan>
+    <tspan x="35" dy="24">O olhar demora. A página respira. A ideia encontra</tspan>
+    <tspan x="35" dy="24">espaço para ser mais do que a primeira impressão.</tspan>
+  </text>
+  
+  <!-- Abstract Text Lines Grid -->
+  <g stroke="#d9d9d9" stroke-width="2">
+    <path d="M35 630H260M35 642H250M35 654H260M35 666H240M35 678H260M35 690H225M35 702H260M35 714H245M35 726H210"/>
+    <path d="M295 630H525M295 642H510M295 654H525M295 666H515M295 678H525M295 690H495M295 702H525M295 714H505M295 726H480"/>
   </g>
-  <text x="604" y="799" fill="#123bd4" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.3">EXPERIMENTOS SOBRE FORMA E SIGNIFICADO</text>
-  <text x="1120" y="799" text-anchor="end" fill="#123bd4" font-family="Arial,sans-serif" font-size="10" letter-spacing="1">009</text>
-  <path d="M575 0V825" stroke="#9298a3" stroke-opacity=".35"/>
+  
+  <path d="M35 776H540" stroke="#010101"/>
+  <text x="35" y="800" fill="#010101" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1">008</text>
+  <text x="540" y="800" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.5">ESTUDO EDITORIAL DEMONSTRATIVO</text>
+  
+  <!-- Right Page (Dark Poster Insert) -->
+  <g clip-path="url(#el-right-clip)">
+    <rect x="600" y="25" width="525" height="750" fill="#010101" rx="2"/>
+    <!-- Gold Geometric Ribbon -->
+    <ellipse cx="865" cy="380" rx="170" ry="285" transform="rotate(30 865 380)" fill="none" stroke="url(#el-gold)" stroke-width="85"/>
+    <ellipse cx="865" cy="380" rx="170" ry="285" transform="rotate(30 865 380)" fill="none" stroke="#ffffff" stroke-opacity=".5" stroke-width="2"/>
+    
+    <text x="625" y="725" fill="#f7f4ef" font-family="'Space Grotesk',sans-serif" font-size="115" font-weight="700" letter-spacing="-8">EN[TRE]</text>
+    <text x="625" y="68" fill="#ffd401" font-family="'Space Mono',monospace" font-size="11" letter-spacing="2">FORMA LIVRE // COMPOSIÇÃO 01</text>
+    <path d="M1080 80V125M1058 102H1102" stroke="#ffd401" stroke-width="2"/>
+  </g>
+  
+  <text x="605" y="800" fill="#010101" font-family="'Space Mono',monospace" font-size="10" letter-spacing="1.5">EXPERIMENTOS SOBRE FORMA E SIGNIFICADO</text>
+  <text x="1120" y="800" text-anchor="end" fill="#010101" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1">009</text>
+  <path d="M575 0V825" stroke="#3a3a3a" stroke-opacity=".3"/>
 </g>
 </svg>

@@ -1,31 +1,64 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
 <defs>
-  <linearGradient id="stage" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#292b25"/><stop offset="1" stop-color="#11130f"/></linearGradient>
-  <linearGradient id="paper" x1="400" y1="100" x2="1100" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#e7ff8d"/><stop offset=".55" stop-color="#d5fa55"/><stop offset="1" stop-color="#c7ef3b"/></linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="180%" height="180%"><feDropShadow dx="30" dy="42" stdDeviation="30" flood-opacity=".5"/></filter>
-  <clipPath id="poster"><rect width="770" height="1010"/></clipPath>
-  <pattern id="grain" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#171b12" opacity=".12"/><circle cx="5" cy="5" r=".4" fill="white" opacity=".3"/></pattern>
+  <linearGradient id="v-stage" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#181818"/>
+    <stop offset="1" stop-color="#010101"/>
+  </linearGradient>
+  <linearGradient id="v-paper" x1="400" y1="100" x2="1100" y2="1100" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#fff176"/>
+    <stop offset=".45" stop-color="#ffd401"/>
+    <stop offset="1" stop-color="#f5b802"/>
+  </linearGradient>
+  <filter id="v-shadow" x="-30%" y="-30%" width="180%" height="180%">
+    <feDropShadow dx="28" dy="45" stdDeviation="32" flood-color="#000000" flood-opacity=".75"/>
+  </filter>
+  <clipPath id="v-poster"><rect width="770" height="1010" rx="4"/></clipPath>
 </defs>
-<rect width="1600" height="1200" fill="url(#stage)"/>
-<path d="M0 1050L1600 700M160 0L1600 1060" stroke="#b7c693" stroke-opacity=".08"/>
-<text x="80" y="99" fill="#b9bcaf" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">IDENTIDADE VISUAL / CULTURA</text>
-<text x="1519" y="1120" text-anchor="end" fill="#8b8f80" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">ESTUDO CONCEITUAL · 01</text>
-<g transform="translate(375 81) rotate(-7 385 505)" filter="url(#shadow)">
-  <rect width="770" height="1010" fill="url(#paper)"/>
-  <g clip-path="url(#poster)">
-    <rect x="36" y="35" width="698" height="2" fill="#171a14"/>
-    <text x="36" y="64" fill="#171a14" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.6">FESTIVAL DE NOVAS PERSPECTIVAS</text>
-    <text x="734" y="64" text-anchor="end" fill="#171a14" font-family="Arial,sans-serif" font-size="12" letter-spacing="1">EDIÇÃO IMAGINÁRIA / 001</text>
-    <text x="23" y="267" fill="#171a14" font-family="Arial Black,Arial,sans-serif" font-size="240" font-weight="900" letter-spacing="-20">VÉR</text>
-    <text x="25" y="470" fill="#171a14" font-family="Arial Black,Arial,sans-serif" font-size="240" font-weight="900" letter-spacing="-20">TICE</text>
-    <path d="M-64 526H250L405 803L545 526H847L454 1125H333Z" fill="#171a14"/>
-    <path d="M-2 528L383 1115M770 528L391 1115" stroke="#d9fa67" stroke-width="2"/>
-    <text transform="translate(515 675) rotate(-59)" fill="#d9fa67" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="4">O FUTURO TEM OUTROS ÂNGULOS.</text>
-    <g transform="translate(42 899)"><rect width="166" height="71" fill="#d9fa67"/><text x="12" y="26" fill="#171a14" font-family="Arial,sans-serif" font-size="11" letter-spacing="1.5">ARTE. SOM. IDEIAS.</text><text x="12" y="53" fill="#171a14" font-family="Arial,sans-serif" font-size="19" font-weight="700">24—26 / SET</text></g>
-    <circle cx="667" cy="908" r="52" fill="#d9fa67"/>
-    <path d="M640 908H694M667 881V935M648 889L686 927M648 927L686 889" stroke="#171a14" stroke-width="3"/>
-    <rect width="770" height="1010" fill="url(#grain)"/>
+<rect width="1600" height="1200" fill="url(#v-stage)"/>
+<path d="M0 1050L1600 700M160 0L1600 1060" stroke="#ffd401" stroke-opacity=".12" stroke-width="1.5"/>
+
+<!-- Technical Frame Text -->
+<text x="80" y="99" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">IDENTIDADE VISUAL // BRANDING CONCEPT</text>
+<text x="1520" y="1120" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="14" letter-spacing="3">CASE DEMONSTRATIVO [ 01 ]</text>
+
+<!-- Main Poster Composition -->
+<g transform="translate(375 81) rotate(-6 385 505)" filter="url(#v-shadow)">
+  <rect width="770" height="1010" rx="4" fill="url(#v-paper)"/>
+  <g clip-path="url(#v-poster)">
+    <rect x="36" y="35" width="698" height="2" fill="#010101"/>
+    <text x="36" y="66" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="700" letter-spacing="2">FESTIVAL DE NOVAS PERSPECTIVAS</text>
+    <text x="734" y="66" text-anchor="end" fill="#010101" font-family="'Space Mono',monospace" font-size="12" letter-spacing="1.5">[ EDIÇÃO DEMO / 001 ]</text>
+    
+    <!-- Bold Typography -->
+    <text x="24" y="270" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="230" font-weight="700" letter-spacing="-14">VÉR</text>
+    <text x="26" y="475" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="230" font-weight="700" letter-spacing="-14">TICE</text>
+    
+    <!-- Dynamic Geometry / Chevron Angles -->
+    <path d="M-64 526H250L405 803L545 526H847L454 1125H333Z" fill="#010101"/>
+    <path d="M-2 528L383 1115M770 528L391 1115" stroke="#ffd401" stroke-width="3"/>
+    
+    <text transform="translate(525 680) rotate(-59)" fill="#ffd401" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" letter-spacing="4">O FUTURO TEM OUTROS ÂNGULOS.</text>
+    
+    <!-- Dates & Badges -->
+    <g transform="translate(42 895)">
+      <rect width="180" height="74" fill="#010101" rx="2"/>
+      <text x="14" y="26" fill="#ffd401" font-family="'Space Mono',monospace" font-size="11" letter-spacing="1.5">ARTE. SOM. IDEIAS.</text>
+      <text x="14" y="55" fill="#ffffff" font-family="'Space Grotesk',sans-serif" font-size="22" font-weight="700">24—26 / SET</text>
+    </g>
+    
+    <circle cx="667" cy="908" r="52" fill="#010101"/>
+    <path d="M640 908H694M667 881V935M648 889L686 927M648 927L686 889" stroke="#ffd401" stroke-width="3"/>
   </g>
 </g>
-<g transform="translate(1156 342) rotate(10)"><rect width="210" height="330" fill="#e6e7de"/><text x="22" y="38" fill="#171a14" font-family="Arial,sans-serif" font-size="11" letter-spacing="1.5">VÉRTICE / ACESSO</text><path d="M23 73H83L110 130L137 73H193L121 228H96Z" fill="#191c14"/><text x="22" y="274" fill="#171a14" font-family="Arial,sans-serif" font-size="13" font-weight="700">TODOS OS ÂNGULOS.</text><path d="M22 292H186" stroke="#171a14" stroke-width="2"/><text x="22" y="312" fill="#171a14" font-family="Arial,sans-serif" font-size="9" letter-spacing="2">PROJETO DEMONSTRATIVO</text></g>
+
+<!-- Side Pass / Ticket -->
+<g transform="translate(1160 340) rotate(11)" filter="url(#v-shadow)">
+  <rect width="215" height="340" fill="#f7f4ef" rx="3"/>
+  <rect x="0" y="0" width="215" height="12" fill="#ffd401"/>
+  <text x="22" y="44" fill="#010101" font-family="'Space Mono',monospace" font-size="11" font-weight="700" letter-spacing="1.5">VÉRTICE // PASS</text>
+  <path d="M23 75H83L110 132L137 75H193L121 230H96Z" fill="#010101"/>
+  <text x="22" y="276" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700">TODOS OS ÂNGULOS.</text>
+  <path d="M22 296H190" stroke="#010101" stroke-width="1.5"/>
+  <text x="22" y="318" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="9" letter-spacing="2">CASE DEMONSTRATIVO</text>
+</g>
 </svg>

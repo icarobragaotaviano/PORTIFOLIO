@@ -1,20 +1,99 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none">
 <defs>
-  <linearGradient id="metal" x1="250" y1="220" x2="920" y2="1010" gradientUnits="userSpaceOnUse"><stop stop-color="#f3f5df"/><stop offset=".12" stop-color="#9ca095"/><stop offset=".23" stop-color="#f6f7ee"/><stop offset=".38" stop-color="#73796c"/><stop offset=".48" stop-color="#e2e6d6"/><stop offset=".51" stop-color="#33382e"/><stop offset=".56" stop-color="#b3ba9f"/><stop offset=".7" stop-color="#e8edda"/><stop offset=".82" stop-color="#8e967e"/><stop offset="1" stop-color="#faffdf"/></linearGradient>
-  <linearGradient id="acid" x1="200" y1="200" x2="950" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#f1ffa5"/><stop offset=".45" stop-color="#d6ff64"/><stop offset="1" stop-color="#a6ce39"/></linearGradient>
-  <radialGradient id="ball" cx=".3" cy=".23" r=".8"><stop stop-color="#faffd7"/><stop offset=".28" stop-color="#d5fc65"/><stop offset=".7" stop-color="#8fae35"/><stop offset="1" stop-color="#3b4a16"/></radialGradient>
-  <filter id="glow"><feGaussianBlur stdDeviation="48"/></filter>
-  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="5" dy="28" stdDeviation="20" flood-color="#000" flood-opacity=".35"/></filter>
+  <linearGradient id="gold" x1="200" y1="200" x2="950" y2="1050" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#fff085"/>
+    <stop offset=".35" stop-color="#ffd401"/>
+    <stop offset=".75" stop-color="#f5b802"/>
+    <stop offset="1" stop-color="#b88300"/>
+  </linearGradient>
+  <linearGradient id="metal-dark" x1="250" y1="200" x2="950" y2="1050" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#3a3a3a"/>
+    <stop offset=".25" stop-color="#181818"/>
+    <stop offset=".5" stop-color="#4a4a4a"/>
+    <stop offset=".75" stop-color="#101010"/>
+    <stop offset="1" stop-color="#2a2a2a"/>
+  </linearGradient>
+  <linearGradient id="chrome" x1="300" y1="250" x2="900" y2="950" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#f7f4ef"/>
+    <stop offset=".15" stop-color="#8a8a8a"/>
+    <stop offset=".35" stop-color="#ffffff"/>
+    <stop offset=".5" stop-color="#222222"/>
+    <stop offset=".65" stop-color="#d9d9d9"/>
+    <stop offset=".85" stop-color="#555555"/>
+    <stop offset="1" stop-color="#f7f4ef"/>
+  </linearGradient>
+  <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+    <stop stop-color="#ffd401" stop-opacity=".25"/>
+    <stop offset="40%" stop-color="#f5b802" stop-opacity=".12"/>
+    <stop offset="100%" stop-color="#ffd401" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="sphere" cx=".3" cy=".25" r=".75">
+    <stop stop-color="#ffffff"/>
+    <stop offset=".2" stop-color="#ffe76b"/>
+    <stop offset=".55" stop-color="#ffd401"/>
+    <stop offset=".85" stop-color="#d69a00"/>
+    <stop offset="1" stop-color="#694800"/>
+  </radialGradient>
+  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="40"/>
+  </filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="8" dy="24" stdDeviation="22" flood-color="#000000" flood-opacity=".8"/>
+  </filter>
 </defs>
-<ellipse cx="600" cy="675" rx="292" ry="292" fill="#bedf66" opacity=".045" filter="url(#glow)"/>
-<g opacity=".13" stroke="#d2d8bb"><circle cx="600" cy="600" r="458"/><circle cx="600" cy="600" r="348"/><path d="M600 98V1102M98 600H1102"/><path d="M180 180L1020 1020M180 1020L1020 180" stroke-dasharray="4 12"/></g>
-<ellipse cx="600" cy="609" rx="395" ry="143" transform="rotate(-31 600 609)" stroke="url(#acid)" stroke-width="5"/>
-<g filter="url(#shadow)">
-  <ellipse cx="600" cy="600" rx="240" ry="350" transform="rotate(31 600 600)" stroke="url(#metal)" stroke-width="124"/>
-  <ellipse cx="600" cy="600" rx="240" ry="350" transform="rotate(31 600 600)" stroke="#f7fbe9" stroke-opacity=".28" stroke-width="1"/>
+
+<!-- Ambient Solar Glow -->
+<circle cx="600" cy="600" r="480" fill="url(#sun-glow)" filter="url(#glow)"/>
+
+<!-- Technical Isometric Coordinates Grid -->
+<g opacity=".2" stroke="#8a8a8a" stroke-width="1">
+  <circle cx="600" cy="600" r="510"/>
+  <circle cx="600" cy="600" r="390" stroke-dasharray="3 9"/>
+  <circle cx="600" cy="600" r="270"/>
+  <path d="M600 60V1140M60 600H1140"/>
+  <path d="M210 210L990 990M210 990L990 210" stroke-dasharray="4 10"/>
 </g>
-<path d="M304 871C133 877 142 748 333 632C522 518 775 464 923 509C1046 547 991 654 828 751" stroke="url(#acid)" stroke-width="6"/>
-<circle cx="913" cy="512" r="54" fill="url(#ball)" filter="url(#shadow)"/>
-<circle cx="296" cy="873" r="10" fill="#dfff83"/>
-<g stroke="#c6ccb3" stroke-opacity=".65"><path d="M181 340V362M170 351H192M963 879V901M952 890H974"/></g>
+
+<!-- Outer Isometric Hexagonal Frame (Echoing the Logo) -->
+<g stroke="url(#gold)" stroke-width="2" opacity=".6" fill="none">
+  <!-- Outer Hexagon -->
+  <polygon points="600,120 1016,360 1016,840 600,1080 184,840 184,360"/>
+  <!-- Inner Hexagon -->
+  <polygon points="600,220 929,410 929,790 600,980 271,790 271,410" stroke="#ffd401" stroke-width="1.5" stroke-dasharray="8 8" opacity=".4"/>
+</g>
+
+<!-- Elliptical Orbital Ring in Yellow -->
+<ellipse cx="600" cy="600" rx="460" ry="165" transform="rotate(-28 600 600)" stroke="url(#gold)" stroke-width="5" fill="none" opacity=".85"/>
+
+<!-- Heavy Faceted Torus / Sculptural Form in Graphite Chrome -->
+<g filter="url(#shadow)">
+  <ellipse cx="600" cy="600" rx="270" ry="380" transform="rotate(32 600 600)" stroke="url(#metal-dark)" stroke-width="135" fill="none"/>
+  <ellipse cx="600" cy="600" rx="270" ry="380" transform="rotate(32 600 600)" stroke="url(#chrome)" stroke-width="130" stroke-dasharray="180 30 60 40" fill="none"/>
+  <ellipse cx="600" cy="600" rx="270" ry="380" transform="rotate(32 600 600)" stroke="#ffffff" stroke-opacity=".3" stroke-width="2" fill="none"/>
+</g>
+
+<!-- Inner Golden Faceted Hexagon Structure (Monogram Geometry Reference) -->
+<g transform="translate(600, 600) scale(1.6) translate(-54, -75.5)" filter="url(#shadow)">
+  <!-- Monogram geometry watermark -->
+  <polygon points="53,0 107.5,27.5 107.5,123.5 53.5,150.5 0,123.5 0,27 7,24 7,119.5 53.5,143 100.5,119.5 100.5,31.5 53.5,8 23,24.5 23,109 53.5,124.5 84.5,109 84.5,80.5 62,70 84.5,59 84.5,39 53.5,24 55,16.5 92,35 92,62.5 77,70 92,77.5 92,113 52,131 15.5,113 15.5,19" fill="url(#gold)" opacity=".95"/>
+</g>
+
+<!-- Intersecting Radiant Ribbon Track -->
+<path d="M260 920C110 910 110 750 310 620C510 490 790 440 950 490C1080 530 1030 660 850 770" stroke="url(#gold)" stroke-width="6" fill="none"/>
+
+<!-- Solar Satellite Spheres -->
+<circle cx="945" cy="495" r="58" fill="url(#sphere)" filter="url(#shadow)"/>
+<circle cx="945" cy="495" r="58" stroke="#ffffff" stroke-width="1.5" stroke-opacity=".6" fill="none"/>
+<circle cx="260" cy="920" r="14" fill="#ffd401" filter="url(#shadow)"/>
+<circle cx="600" cy="120" r="8" fill="#ffd401"/>
+
+<!-- Technical Crosshairs & Marks -->
+<g stroke="#ffd401" stroke-width="1.5" opacity=".7">
+  <path d="M150 330V355M137 342H163"/>
+  <path d="M1040 850V875M1027 862H1053"/>
+  <path d="M600 50V70M590 60H610"/>
+  <path d="M600 1130V1150M590 1140H610"/>
+</g>
+<text x="175" y="347" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">AXIS // 30° ISO</text>
+<text x="940" y="867" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">IB-MONOGRAM</text>
 </svg>

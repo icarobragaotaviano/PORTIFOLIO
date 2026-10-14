@@ -1,8 +1,13 @@
 # PORTIFOLIO
 
-Portfólio de direção de arte e design de **Icaro Braga**, com composição editorial, tipografia expressiva, projetos em destaque e páginas individuais de cases. O código gera um site estático, responsivo e pronto para personalização.
+Portfólio de direção de arte e design de **Icaro Braga**, com composição editorial contemporânea, tipografia **Space Grotesk** e **Space Mono**, identidade visual em amarelo solar (`#ffd401`) e obsidian (`#010101`), logotipo com o monograma geométrico **IB**, projetos em destaque e páginas individuais de cases. O código gera um site estático, responsivo, performático e pronto para personalização.
 
 [Repositório no GitHub](https://github.com/icarobragaotaviano/PORTIFOLIO)
+
+### Identidade visual & Assets
+- **Tipografia:** `Space Grotesk` (principal) e `Space Mono` (detalhes técnicos, números e metadados).
+- **Símbolo do Logotipo:** Monograma geométrico hexagonal `IB` em vetor SVG (`public/images/logo.svg`) e raster de alta fidelidade (`public/images/logo.png`).
+- **Paleta de cores:** Amarelo solar (`#ffd401`), âmbar (`#f5b802`), ouro suave (`#ffe76b`), preto profundo (`#010101`), obsidiana (`#101010`), grafite (`#181818`), cinzas estruturais (`#333333`, `#8a8a8a`, `#d9d9d9`), papel quente editorial (`#f7f4ef`) e branco puro (`#ffffff`).
 
 ## Conteúdo demonstrativo
 
