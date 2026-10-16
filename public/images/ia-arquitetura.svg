@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#101010"/>
+  <!-- Split Screen Before / After Hybrid Workflow -->
+  <rect x="80" y="110" width="500" height="580" rx="4" fill="#181818" stroke="#333333" stroke-width="2"/>
+  <rect x="620" y="110" width="500" height="580" rx="4" fill="#f7f4ef" stroke="#ffd401" stroke-width="3"/>
+
+  <text x="115" y="160" fill="#ffd401" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">01 // GERAÇÃO BASE &amp; LUZ</text>
+  <circle cx="330" cy="400" r="140" stroke="#ffd401" stroke-width="2" stroke-dasharray="8 8"/>
+  <circle cx="330" cy="400" r="85" fill="#262626"/>
+  <path d="M210 560 H450" stroke="#555555" stroke-width="2"/>
+
+  <text x="655" y="160" fill="#010101" font-family="'Space Mono',monospace" font-size="12" font-weight="700" letter-spacing="2">02 // DIREÇÃO DE ARTE &amp; ACABAMENTO</text>
+  <circle cx="870" cy="380" r="135" fill="#ffd401"/>
+  <path d="M760 490 L980 270" stroke="#010101" stroke-width="6"/>
+  <text x="870" y="615" text-anchor="middle" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="38" font-weight="700" letter-spacing="-1">OLHAR HUMANO</text>
+</svg>

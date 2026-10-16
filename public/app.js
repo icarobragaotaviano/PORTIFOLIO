@@ -38,6 +38,13 @@ if (filterBar) {
   }));
 }
 
+const printResumeBtn = document.querySelector('#print-resume-btn');
+if (printResumeBtn) {
+  printResumeBtn.addEventListener('click', () => {
+    window.print();
+  });
+}
+
 // Animate only when supported and explicitly allowed by the visitor.
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver((entries) => {
@@ -48,7 +55,7 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.project-card, .about-content, .case-story section').forEach((element) => {
+  document.querySelectorAll('.project-card, .motion-card, .ai-card, .about-content, .experience-card, .blog-card, .case-story section').forEach((element) => {
     element.classList.add('reveal');
     observer.observe(element);
   });
@@ -67,8 +74,12 @@ if (ruler && rulerIndicator) {
   const sections = [
     { id: 'inicio', element: document.querySelector('.hero') || document.querySelector('#inicio'), number: '00', label: 'INÍCIO' },
     { id: 'projetos', element: document.querySelector('#projetos'), number: '01', label: 'PROJETOS' },
-    { id: 'sobre', element: document.querySelector('#sobre'), number: '02', label: 'SOBRE' },
-    { id: 'contato', element: document.querySelector('#contato'), number: '03', label: 'CONTATO' }
+    { id: 'motion', element: document.querySelector('#motion'), number: '02', label: 'MOTION' },
+    { id: 'criacoes-ia', element: document.querySelector('#criacoes-ia'), number: '03', label: 'CRIAÇÕES IA' },
+    { id: 'sobre', element: document.querySelector('#sobre'), number: '04', label: 'QUEM SOU EU' },
+    { id: 'curriculo', element: document.querySelector('#curriculo'), number: '05', label: 'CURRÍCULO' },
+    { id: 'blog', element: document.querySelector('#blog'), number: '06', label: 'BLOG' },
+    { id: 'contato', element: document.querySelector('#contato'), number: '07', label: 'CONTATO' }
   ].filter((s) => s.element);
 
   let currentSection = 'inicio';

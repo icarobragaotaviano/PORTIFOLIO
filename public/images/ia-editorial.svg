@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#0c0c0c"/>
+  <g transform="translate(100 90)">
+    <rect width="1000" height="620" rx="4" fill="#161616" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="40" y="40" width="420" height="540" fill="#ffd401"/>
+    <text x="70" y="150" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="92" font-weight="700" letter-spacing="-4">NOVA</text>
+    <text x="70" y="240" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="92" font-weight="700" letter-spacing="-4">ESTÉ</text>
+    <text x="70" y="330" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="92" font-weight="700" letter-spacing="-4">TICA.</text>
+    <text x="70" y="530" fill="#010101" font-family="'Space Mono',monospace" font-size="13" font-weight="700" letter-spacing="2">EDITORIAL // CAMPANHAS</text>
+
+    <text x="510" y="100" fill="#ffd401" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">WORKFLOW GENERATIVO</text>
+    <text x="510" y="170" fill="#f7f4ef" font-family="'Space Grotesk',sans-serif" font-size="36" font-weight="700">Exploração de texturas,</text>
+    <text x="510" y="215" fill="#f7f4ef" font-family="'Space Grotesk',sans-serif" font-size="36" font-weight="700">cenários e atmosferas.</text>
+    
+    <rect x="510" y="275" width="430" height="1" fill="#333333"/>
+    <text x="510" y="325" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="13">▪ DIREÇÃO FOTOGRÁFICA SINTÉTICA</text>
+    <text x="510" y="370" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="13">▪ COMPOSIÇÃO &amp; TRATAMENTO AVANÇADO</text>
+    <text x="510" y="415" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="13">▪ CONSISTÊNCIA DE IDENTIDADE VISUAL</text>
+
+    <rect x="510" y="485" width="260" height="58" rx="3" fill="#222222" stroke="#ffd401"/>
+    <text x="640" y="520" text-anchor="middle" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" font-weight="700">IA + DESIGN GRÁFICO</text>
+  </g>
+</svg>

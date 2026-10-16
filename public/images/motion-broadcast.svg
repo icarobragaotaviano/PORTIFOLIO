@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#0d0d0d"/>
+  <circle cx="600" cy="400" r="290" stroke="#ffd401" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="10 8"/>
+  <circle cx="600" cy="400" r="210" stroke="#ffd401" stroke-opacity="0.4" stroke-width="1.5"/>
+  <circle cx="600" cy="400" r="120" fill="#ffd401" fill-opacity="0.1" stroke="#ffd401" stroke-width="3"/>
+
+  <!-- Broadcast Safe Frame -->
+  <rect x="90" y="90" width="1020" height="620" stroke="#333333" stroke-width="1.5"/>
+  <path d="M90 130 V90 H130 M1070 90 H1110 V130 M1110 670 V710 H1070 M130 710 H90 V670" stroke="#ffd401" stroke-width="4"/>
+
+  <text x="130" y="145" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" font-weight="700" letter-spacing="3">● LIVE BROADCAST // EVENTOS &amp; TRANSMISSÃO</text>
+  <text x="1070" y="145" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">1080P // DIREÇÃO AO VIVO</text>
+
+  <!-- Lower Third Graphic Mockup -->
+  <g transform="translate(150 520)">
+    <rect width="680" height="110" rx="4" fill="#181818" stroke="#ffd401" stroke-width="2"/>
+    <rect width="14" height="110" fill="#ffd401"/>
+    <text x="42" y="45" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" letter-spacing="2">IDENTIDADE EM MOVIMENTO // EVENTOS CIENTÍFICOS</text>
+    <text x="42" y="84" fill="#f7f4ef" font-family="'Space Grotesk',sans-serif" font-size="34" font-weight="700" letter-spacing="-1">VINHETAS, TRANSIÇÕES &amp; TELAS</text>
+  </g>
+
+  <!-- Center Play / Pulse Emblem -->
+  <polygon points="580,360 580,440 645,400" fill="#ffd401"/>
+</svg>

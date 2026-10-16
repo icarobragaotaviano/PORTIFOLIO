@@ -93,6 +93,26 @@ for (const base of ['/', '/PORTIFOLIO/']) {
       }
     }
   });
+
+  test(`build ${base}: página inicial inclui Motion, Criações com IA, Quem Sou Eu, Currículo, Blog, Redes Sociais e Contatos`, async () => {
+    const { outDir } = builds.get(base);
+    const html = await readFile(join(outDir, 'index.html'), 'utf8');
+    for (const sectionId of ['projetos', 'motion', 'criacoes-ia', 'sobre', 'curriculo', 'blog', 'redes-sociais', 'contato']) {
+      assert.match(html, new RegExp(`id="${sectionId}"`), `Seção #${sectionId} ausente na home`);
+    }
+    assert.ok(html.includes('Ícaro Braga Otaviano'));
+    assert.ok(html.includes('(88) 99652-1395'));
+    assert.ok(html.includes('icarobragaotaviano@gmail.com'));
+    assert.ok(html.includes('Fortaleza, Ceará, BR'));
+    assert.ok(html.includes('Colégio Paiva Andrade'));
+    assert.ok(html.includes('Colégio Pequeno Príncipe'));
+    assert.ok(html.includes('JCRA – Jornada Cearense de Reprodução Assistida'));
+    assert.ok(html.includes('ENPRA – Encontro Nordestino de Psicologia em Reprodução Assistida'));
+    assert.ok(html.includes('Rádio Educadora do Cariri'));
+    assert.ok(html.includes('Humani Clin'));
+    assert.ok(html.includes('Hemoce'));
+    assert.ok(html.includes('Instituto Elo Amigo'));
+  });
 }
 
 test('texto editável é escapado tanto em conteúdo quanto em atributos HTML', () => {

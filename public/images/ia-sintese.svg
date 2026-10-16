@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <radialGradient id="ai1-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd401" stop-opacity="0.45"/>
+      <stop offset="65%" stop-color="#f5b802" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#010101" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#080808"/>
+  <circle cx="600" cy="400" r="420" fill="url(#ai1-glow)"/>
+
+  <!-- Latent Space Grid -->
+  <g stroke="#ffd401" stroke-opacity="0.22" stroke-width="1">
+    <polygon points="600,110 920,280 920,560 600,710 280,560 280,280"/>
+    <polygon points="600,190 830,315 830,515 600,630 370,515 370,315"/>
+    <polygon points="600,270 740,350 740,470 600,550 460,470 460,350"/>
+    <line x1="600" y1="110" x2="600" y2="710"/>
+    <line x1="280" y1="280" x2="920" y2="560"/>
+    <line x1="920" y1="280" x2="280" y2="560"/>
+  </g>
+
+  <circle cx="600" cy="410" r="68" fill="#ffd401"/>
+  <text x="600" y="426" text-anchor="middle" fill="#010101" font-family="'Space Grotesk',sans-serif" font-size="44" font-weight="700">IA</text>
+
+  <text x="70" y="75" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3">CRIAÇÕES COM IA // SÍNTESE CONCEITUAL</text>
+  <text x="1130" y="75" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="13" letter-spacing="2">SEED // DIREÇÃO DE ARTE</text>
+  <text x="70" y="740" fill="#f7f4ef" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">PROMPT → CURADORIA → RETOQUE → COMPOSIÇÃO FINAL</text>
+</svg>
