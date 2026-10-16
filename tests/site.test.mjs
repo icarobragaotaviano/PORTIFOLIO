@@ -104,6 +104,8 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     assert.ok(html.includes('(88) 99652-1395'));
     assert.ok(html.includes('icarobragaotaviano@gmail.com'));
     assert.ok(html.includes('Fortaleza, Ceará, BR'));
+    assert.ok(html.includes('Bolero Comunicação'));
+    assert.ok(html.includes('MS Confecções'));
     assert.ok(html.includes('Colégio Paiva Andrade'));
     assert.ok(html.includes('Colégio Pequeno Príncipe'));
     assert.ok(html.includes('JCRA – Jornada Cearense de Reprodução Assistida'));

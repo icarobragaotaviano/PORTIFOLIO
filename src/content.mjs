@@ -216,6 +216,17 @@ export const profile = {
 export const resume = {
   experiences: [
     {
+      role: 'Designer Gráfico e Visual – Prestação de Serviços',
+      company: 'Bolero Comunicação',
+      location: 'Fortaleza — 2026',
+      focus: 'Prestação de Serviços em Design, Direção de Arte e Comunicação Visual',
+      bullets: [
+        'Prestação de serviços especializados em design gráfico, direção de arte e peças de comunicação para campanhas e clientes da agência.',
+        'Desenvolvimento e adaptação de layouts, materiais digitais, mídias sociais e peças gráficas.',
+        'Finalização e entrega técnica de materiais criativos com foco em agilidade e padrão visual.',
+      ],
+    },
+    {
       role: 'Designer Gráfico e Visual',
       company: 'Colégio Paiva Andrade',
       location: 'Fortaleza (Messejana)',
@@ -264,6 +275,17 @@ export const resume = {
         'Design de peças digitais, apresentações e materiais de divulgação para diferentes canais.',
         'Produção e direção das mídias digitais do evento, garantindo padronização visual e boa experiência para palestrantes e participantes.',
         'Direção ao vivo do evento, com cuidado na estética visual das transmissões.',
+      ],
+    },
+    {
+      role: 'Designer de Estampas e Arte-Finalista',
+      company: 'MS Confecções',
+      location: 'Ceará — 2017',
+      focus: 'Criação de Estampas de Camisas e Preparação para Impressão',
+      bullets: [
+        'Criação e desenvolvimento de estampas exclusivas e ilustrações gráficas para camisas e vestuário.',
+        'Preparação técnica e fechamento de arquivos para impressão têxtil (serigrafia, sublimação e estamparia).',
+        'Separação de cores, revisão de padrões cromáticos e arte final garantindo fidelidade na produção.',
       ],
     },
     {
