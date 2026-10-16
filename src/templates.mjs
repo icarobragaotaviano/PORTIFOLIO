@@ -96,7 +96,7 @@ function footer() {
       <div class="footer-meta">
         <span>${escape(site.initials)} / © ${new Date().getFullYear()} ${escape(site.name)}.</span>
         <span>Design Gráfico, Fotografia, Motion &amp; IA — ${escape(site.location)}</span>
-        <span>Portfólio &amp; Currículo Profissional</span>
+        <span>Portfólio &amp; Currículo Profissional • <button type="button" class="owner-lock-btn" id="owner-access-btn" title="Acesso exclusivo do proprietário (Ctrl+Shift+E)">🔒 Área do Proprietário</button></span>
       </div>
     </div>
   </footer>`;
@@ -110,14 +110,14 @@ export function layout({ base = '/', title, description = site.description, body
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="icon" href="${asset(base, 'favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="${asset(base, 'styles.css')}"><script src="${asset(base, 'app.js')}" defer></script></head>
-<body id="inicio"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>${header(base, isHome)}<main id="conteudo">${body}</main>${footer()}</body></html>`;
+<body id="inicio" data-base="${escape(base)}"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>${header(base, isHome)}<main id="conteudo">${body}</main>${footer()}</body></html>`;
 }
 
 function projectCard(project, base) {
   const placeholder = project.status === 'placeholder';
   return `<article class="project-card ${placeholder ? 'placeholder-card' : ''}" data-category="${escape(project.category)}">
     <a class="project-link" href="${linkToProject(base, project)}" aria-label="${placeholder ? 'Ver espaço reservado' : 'Explorar case demonstrativo'}: ${escape(project.title)}">
-      <div class="project-image">${placeholder ? `<div class="wine-art"><span class="wine-small">UM NOVO CAPÍTULO</span><span class="wine-word">Wine<br><i>Gourmet.</i></span><span class="wine-mark" aria-hidden="true">W<span>G</span></span><span class="wine-label">ESPAÇO RESERVADO // EM BREVE</span></div>` : `<img src="${asset(base, project.image)}" alt="${escape(project.alt)}" width="1600" height="1200" loading="lazy" decoding="async">`}
+      <div class="project-image">${placeholder ? `<div class="wine-art"><span class="wine-small">UM NOVO CAPÍTULO</span><span class="wine-word">Wine<br><i>Gourmet.</i></span><span class="wine-mark" aria-hidden="true">W<span>G</span></span><span class="wine-label">ESPAÇO RESERVADO // EM BREVE</span></div>` : `<img src="${asset(base, project.image)}" alt="${escape(project.alt)}" data-edit-img="project-${escape(project.slug)}" width="1600" height="1200" loading="lazy" decoding="async">`}
       <span class="project-view" aria-hidden="true">${placeholder ? 'Ver detalhes' : 'Explorar case'} ↗</span></div>
       <div class="project-caption"><div><span class="project-number">/${project.number}</span><h3>${escape(project.title)}</h3></div><span class="project-category">${escape(project.category)} ${arrow}</span></div>
       <div class="project-description"><p>${escape(project.subtitle)}</p><span class="demo-label">${placeholder ? 'Projeto a adicionar' : 'Case demonstrativo'}</span></div>
@@ -140,7 +140,7 @@ function motionSection(base) {
           .map(
             (item) => `<article class="motion-card">
           <div class="motion-preview">
-            <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" data-edit-img="motion-${escape(item.number)}" width="1200" height="800" loading="lazy" decoding="async">
             <span class="motion-badge"><span class="motion-rec-dot" aria-hidden="true"></span>${escape(item.duration)}</span>
           </div>
           <div class="motion-body">
@@ -184,7 +184,7 @@ function aiSection(base) {
           .map(
             (item) => `<article class="ai-card">
           <div class="ai-image-wrap">
-            <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" width="1200" height="800" loading="lazy" decoding="async">
+            <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" data-edit-img="ai-${escape(item.number)}" width="1200" height="800" loading="lazy" decoding="async">
             <span class="ai-tag">${escape(item.tag)}</span>
           </div>
           <div class="ai-card-content">
@@ -214,9 +214,22 @@ function aboutSection(base) {
     </div>
     <div class="about-grid">
       <div class="about-side">
-        <img src="${asset(base, 'images/logo.svg')}" width="54" height="75" alt="Monograma IB" class="about-symbol-mark">
-        <p>A forma chama.<br>A ideia fica.</p>
-        <span class="eyebrow">DESIGN GRÁFICO, FOTOGRAFIA<br>&amp; PRODUÇÃO AUDIOVISUAL</span>
+        <figure class="profile-photo-frame">
+          <div class="profile-photo-wrap">
+            <img src="${asset(base, 'images/profile-placeholder.svg')}" width="800" height="1000" alt="Foto de perfil de ${escape(site.name)}" class="profile-photo-img" id="owner-profile-photo" data-edit-img="profile-photo">
+          </div>
+          <figcaption class="profile-photo-caption">
+            <span>RETRATO // ${escape(site.initials)}</span>
+            <span>${escape(site.location.toUpperCase())}</span>
+          </figcaption>
+        </figure>
+        <div class="about-brand-signature">
+          <img src="${asset(base, 'images/logo.svg')}" width="42" height="58" alt="Monograma IB" class="about-symbol-mark">
+          <div>
+            <p>A forma chama.<br>A ideia fica.</p>
+            <span class="eyebrow">DESIGN GRÁFICO, FOTOGRAFIA<br>&amp; PRODUÇÃO AUDIOVISUAL</span>
+          </div>
+        </div>
         <div class="about-quick-facts">
           <div><span>EXPERIÊNCIA</span><strong>${escape(site.experienceYears)}</strong></div>
           <div><span>LOCALIZAÇÃO</span><strong>${escape(site.location)}</strong></div>
@@ -516,7 +529,7 @@ export function casePage(project, base) {
     title: project.title,
     description: project.intro,
     body: `<section class="case-header wrap"><a class="text-link" href="${base}#projetos">← Todos os projetos</a><div class="case-kicker"><span>/${project.number} — ${escape(project.category)}</span><span class="case-badge">${placeholder ? 'ESPAÇO RESERVADO' : 'CASE DEMONSTRATIVO'}</span></div><h1>${escape(project.title)}<span class="accent">.</span></h1><p class="case-subtitle">${escape(project.subtitle)}</p><div class="case-meta"><div><span>NATUREZA</span><p>${placeholder ? 'Projeto a adicionar' : 'Estudo autoral fictício'}</p></div><div><span>DISCIPLINAS PROPOSTAS</span><p>${escape(project.services.join(' / ') || 'A definir')}</p></div><div><span>STATUS</span><p>${placeholder ? 'Aguardando conteúdo real' : 'Exploração conceitual'}</p></div></div></section>
-    <section class="case-body">${placeholder ? `<div class="case-placeholder wrap"><span aria-hidden="true">↗</span><h2>Boas histórias<br>merecem <i>seu tempo.</i></h2><p>WineGourmet tem um lugar reservado aqui. O case será adicionado quando os materiais, o escopo e os créditos estiverem disponíveis.</p><p class="demo-label">Nenhum trabalho realizado ou resultado é atribuído neste espaço.</p></div>` : `<figure class="case-cover"><img src="${asset(base, project.image)}" width="1600" height="1200" alt="${escape(project.alt)}"><figcaption>${escape(project.title)} / Exploração visual demonstrativa</figcaption></figure>`}
+    <section class="case-body">${placeholder ? `<div class="case-placeholder wrap"><span aria-hidden="true">↗</span><h2>Boas histórias<br>merecem <i>seu tempo.</i></h2><p>WineGourmet tem um lugar reservado aqui. O case será adicionado quando os materiais, o escopo e os créditos estiverem disponíveis.</p><p class="demo-label">Nenhum trabalho realizado ou resultado é atribuído neste espaço.</p></div>` : `<figure class="case-cover"><img src="${asset(base, project.image)}" width="1600" height="1200" alt="${escape(project.alt)}" data-edit-img="project-${escape(project.slug)}"><figcaption>${escape(project.title)} / Exploração visual demonstrativa</figcaption></figure>`}
       <div class="wrap"><div class="case-intro"><span class="eyebrow">${placeholder ? 'O PRÓXIMO PASSO' : 'A IDEIA EM POUCAS PALAVRAS'}</span><h2>${escape(project.intro)}</h2></div><div class="case-story">${[['01 / O DESAFIO', project.challenge], ['02 / O CONCEITO', project.concept], ['03 / A EXPRESSÃO', project.solution]].map(([label, text]) => `<section><h3>${label}</h3><p>${escape(text)}</p></section>`).join('')}</div>
       ${placeholder ? '' : `<div class="case-detail" style="--case-accent:${escape(project.accent)}"><div class="detail-type"><span>TIPO / COR / ATITUDE</span><strong>${project.slug === 'vertice' ? 'Vv' : project.slug === 'casa-sol' ? 'Sol.' : 'Aa'}</strong><span>${escape(project.title)} — SISTEMA VISUAL</span></div><div class="detail-list"><h3>Uma ideia.<br>Muitas possibilidades.</h3><ul>${project.deliverables.map((item) => `<li>${escape(item)} <span aria-hidden="true">↗</span></li>`).join('')}</ul><p>Aplicações propostas neste estudo conceitual.</p></div></div>`}
       <aside class="case-disclaimer"><span aria-hidden="true">✳</span><p>${escape(project.note)}</p></aside><a class="next-project" href="${linkToProject(base, next)}"><span>PRÓXIMO ${next.status === 'placeholder' ? 'CAPÍTULO' : 'CASE'}</span><strong>${escape(next.title)}</strong><span aria-hidden="true">↗</span></a></div></section>`,

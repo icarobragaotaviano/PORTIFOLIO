@@ -114,6 +114,9 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     assert.ok(html.includes('Humani Clin'));
     assert.ok(html.includes('Hemoce'));
     assert.ok(html.includes('Instituto Elo Amigo'));
+    assert.match(html, /id="owner-profile-photo"/);
+    assert.ok(html.includes('images/profile-placeholder.svg'));
+    assert.match(html, /id="owner-access-btn"/);
   });
 }
 

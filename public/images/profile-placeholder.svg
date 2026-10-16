@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" fill="none">
+  <defs>
+    <linearGradient id="p-bg" x1="0" y1="0" x2="800" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a1a1a"/>
+      <stop offset="1" stop-color="#080808"/>
+    </linearGradient>
+    <radialGradient id="p-glow" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#ffd401" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffd401" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#p-bg)"/>
+  <circle cx="400" cy="420" r="360" fill="url(#p-glow)"/>
+
+  <!-- Editorial Grid Lines -->
+  <g stroke="#2a2a2a" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="1000"/>
+    <line x1="720" y1="0" x2="720" y2="1000"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="840" x2="800" y2="840"/>
+  </g>
+
+  <!-- Viewfinder Corner Brackets -->
+  <path d="M80 170 V120 H130 M670 120 H720 V170 M720 790 V840 H670 M130 840 H80 V790" stroke="#ffd401" stroke-width="4"/>
+
+  <!-- Technical Header -->
+  <text x="105" y="92" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" font-weight="700" letter-spacing="3">RETRATO // ÍCARO BRAGA</text>
+  <text x="695" y="92" text-anchor="end" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">[ FOTO DE PERFIL ]</text>
+
+  <!-- Stylized Portrait Silhouette Placeholder -->
+  <g transform="translate(400 430)">
+    <circle cx="0" cy="-70" r="95" fill="#141414" stroke="#ffd401" stroke-width="3"/>
+    <path d="M-190 250 C-190 110, -100 55, 0 55 C100 55, 190 110, 190 250" fill="#141414" stroke="#ffd401" stroke-width="3"/>
+    <!-- Camera / Focus Crosshair -->
+    <line x1="-24" y1="-70" x2="24" y2="-70" stroke="#ffd401" stroke-opacity="0.5" stroke-width="1.5"/>
+    <line x1="0" y1="-94" x2="0" y2="-46" stroke="#ffd401" stroke-opacity="0.5" stroke-width="1.5"/>
+  </g>
+
+  <!-- Badge Callout -->
+  <rect x="180" y="715" width="440" height="54" rx="4" fill="#010101" stroke="#ffd401" stroke-width="1.5"/>
+  <text x="400" y="747" text-anchor="middle" fill="#ffd401" font-family="'Space Mono',monospace" font-size="13" font-weight="700" letter-spacing="2">ESPAÇO PARA SUA FOTO // CLIQUE NO EDITOR</text>
+
+  <!-- Footer Metadata -->
+  <text x="105" y="900" fill="#f7f4ef" font-family="'Space Grotesk',sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">ÍCARO BRAGA OTAVIANO</text>
+  <text x="105" y="932" fill="#8a8a8a" font-family="'Space Mono',monospace" font-size="12" letter-spacing="2">DESIGNER GRÁFICO, VISUAL &amp; AUDIOVISUAL — FORTALEZA, CE</text>
+</svg>
