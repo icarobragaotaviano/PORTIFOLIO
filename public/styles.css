@@ -2603,6 +2603,26 @@ nav a > span {
   color: var(--gray-muted);
 }
 
+.about-exp-strip {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--black-800);
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+}
+
+.about-exp-strip > .eyebrow {
+  display: block;
+  color: var(--gray-light);
+  margin-bottom: 14px;
+}
+
+.about-exp-strip > .eyebrow a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* ==========================================================================
    CURRÍCULO PROFISSIONAL SECTION
    ========================================================================== */

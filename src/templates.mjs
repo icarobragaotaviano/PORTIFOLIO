@@ -138,7 +138,7 @@ function motionSection(base) {
       <div class="motion-grid">
         ${motionProjects
           .map(
-            (item) => `<article class="motion-card reveal">
+            (item) => `<article class="motion-card">
           <div class="motion-preview">
             <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" width="1200" height="800" loading="lazy" decoding="async">
             <span class="motion-badge"><span class="motion-rec-dot" aria-hidden="true"></span>${escape(item.duration)}</span>
@@ -182,7 +182,7 @@ function aiSection(base) {
       <div class="ai-grid">
         ${aiCreations
           .map(
-            (item) => `<article class="ai-card reveal">
+            (item) => `<article class="ai-card">
           <div class="ai-image-wrap">
             <img src="${asset(base, item.image)}" alt="${escape(item.alt)}" width="1200" height="800" loading="lazy" decoding="async">
             <span class="ai-tag">${escape(item.tag)}</span>
@@ -239,6 +239,12 @@ function aboutSection(base) {
             )
             .join('')}
         </div>
+        <div class="about-exp-strip" aria-label="Resumo de atuação profissional">
+          <span class="eyebrow">ATUAÇÃO &amp; EXPERIÊNCIAS EM DESTAQUE // <a href="#curriculo">VER CURRÍCULO COMPLETO ↓</a></span>
+          <div class="motion-tags">
+            ${resume.experiences.map((exp) => `<a href="#curriculo" class="tag-pill tag-accent">${escape(exp.company)} (${escape(exp.location)})</a>`).join('')}
+          </div>
+        </div>
         <div class="process" aria-label="Abordagem criativa">
           <details open>
             <summary><span>01</span>Pensar antes de desenhar<span class="details-icon" aria-hidden="true">+</span></summary>
@@ -267,7 +273,7 @@ function resumeSection() {
       </div>
       <div class="resume-header-banner">
         <div>
-          <span class="eyebrow">CURRÍCULO DESIGNER // TRAJETÓRIA VERIFICADA</span>
+          <span class="eyebrow">CURRÍCULO DESIGNER // TRAJETÓRIA VERIFICADA (${resume.experiences.length} EXPERIÊNCIAS)</span>
           <h2>${escape(site.name)}</h2>
           <p class="resume-meta-line">
             <span><strong>Telefone:</strong> <a href="${escape(site.phoneHref)}">${escape(site.phone)}</a></span>
@@ -288,7 +294,7 @@ function resumeSection() {
         <div class="experience-list">
           ${resume.experiences
             .map(
-              (exp, index) => `<article class="experience-card reveal">
+              (exp, index) => `<article class="experience-card">
             <div class="exp-left">
               <span class="exp-index">EXP // ${String(index + 1).padStart(2, '0')}</span>
               <h4>${escape(exp.role)}</h4>
@@ -382,7 +388,7 @@ function blogSection() {
       <div class="blog-grid">
         ${blogPosts
           .map(
-            (post, idx) => `<article class="blog-card reveal">
+            (post, idx) => `<article class="blog-card">
           <div class="blog-card-top">
             <span class="blog-category">${escape(post.category)}</span>
             <span class="blog-date">${escape(post.date)} • ${escape(post.readTime)}</span>

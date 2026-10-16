@@ -2,6 +2,8 @@ name: Publicar portfólio no GitHub Pages
 
 # Run manually after selecting GitHub Actions in Settings > Pages.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
