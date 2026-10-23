@@ -12,10 +12,10 @@ export function createServer(directory, { base = '/' } = {}) {
   const publicRoot = resolve(directory);
   return httpServer(async (request, response) => {
     const send = (code, text) => { response.writeHead(code, { 'Content-Type': 'text/plain; charset=utf-8' }); response.end(request.method === 'HEAD' ? undefined : text); };
-    if (!['GET', 'HEAD'].includes(request.method)) { response.setHeader('Allow', 'GET, HEAD'); send(405, 'Método não permitido.'); return; }
     try {
       const url = new URL(request.url, 'http://localhost');
       const pathname = decodeURIComponent(url.pathname);
+      if (!['GET', 'HEAD'].includes(request.method)) { response.setHeader('Allow', 'GET, HEAD'); send(405, 'Método não permitido.'); return; }
       if (base !== '/' && pathname === base.slice(0, -1)) { response.writeHead(308, { Location: `${base}${url.search}` }); response.end(); return; }
       if (!pathname.startsWith(base)) { send(404, 'Página não encontrada.'); return; }
       const relative = pathname.slice(base.length);

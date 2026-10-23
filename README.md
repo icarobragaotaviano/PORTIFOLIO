@@ -1,6 +1,6 @@
 # PORTIFOLIO
 
-Portfólio de direção de arte e design de **Icaro Braga**, com composição editorial contemporânea, tipografia **Space Grotesk** e **Space Mono**, identidade visual em amarelo solar (`#ffd401`) e obsidian (`#010101`), logotipo com o monograma geométrico **IB**, projetos em destaque e páginas individuais de cases. O código gera um site estático, responsivo, performático e pronto para personalização.
+Portfólio de direção de arte e design de **Icaro Braga**, com composição editorial contemporânea, tipografia **Space Grotesk** e **Space Mono**, identidade visual em amarelo solar (`#ffd401`) e obsidian (`#010101`), logotipo com o monograma geométrico **IB**, projetos em destaque e páginas individuais de cases. O código gera um portfólio estático e responsivo.
 
 [Repositório no GitHub](https://github.com/icarobragaotaviano/PORTIFOLIO)
 
@@ -36,7 +36,7 @@ O servidor não acompanha alterações automaticamente. Após editar um arquivo,
 | `npm run preview` | Serve o conteúdo já gerado em `dist/`. |
 | `npm test` | Executa os testes automatizados do projeto. |
 
-## Personalização
+## Personalização do portfólio
 
 Edite `src/content.mjs` para atualizar os dados do portfólio:
 
@@ -78,17 +78,19 @@ Para hospedar na raiz de um domínio, use:
 npm run build
 ```
 
-Publique o **conteúdo de `dist/`** em uma hospedagem estática. Quando o serviço pedir configurações de build, informe `npm run build` como comando e `dist` como diretório de saída. Use Node.js 22 ou superior no ambiente de build.
+Publique o **conteúdo de `dist/`** em uma hospedagem estática para disponibilizar o portfólio. Quando o serviço pedir configurações de build, informe `npm run build` como comando e `dist` como diretório de saída. Use Node.js 22 ou superior no ambiente de build.
 
 ### Vercel
 
-Importe este repositório como projeto estático. O arquivo `vercel.json` define a saída `dist/` e executa os testes antes do build com caminho base `/`. Assim, as configurações de GitHub Pages não interferem no endereço da Vercel. Use Node.js 22 ou superior.
+Importe este repositório na Vercel. O arquivo `vercel.json` define a saída estática `dist/` e executa os testes antes do build com caminho base `/`. Use Node.js 22 ou superior.
 
 Se o repositório já estiver vinculado à Vercel, a integração seguirá as regras de publicação configuradas na sua conta. Um deploy pode exigir login, conforme a proteção do projeto. A validação local não confirma acesso público ao endereço remoto.
 
 ### GitHub Pages
 
 Um site de projeto no GitHub Pages fica em um subdiretório. Para este repositório, o caminho base é **`/PORTIFOLIO/`**, com a mesma capitalização do nome do repositório.
+
+O GitHub Pages publica os arquivos estáticos do portfólio gerados em `dist/`.
 
 O workflow `.github/workflows/pages.yml` permite iniciar a publicação manualmente:
 
@@ -118,6 +120,6 @@ Para testar o build de Pages localmente: `BASE_PATH=/PORTIFOLIO/ npm run preview
 
 ## Verificação antes de publicar
 
-Execute `npm test` e `npm run build`, abra o preview e confira a navegação, os cases e a apresentação em telas pequenas. Revise os dados pessoais e o destino do contato antes de compartilhar o site. O projeto é estático: não inclui painel administrativo, envio de formulário ou armazenamento de mensagens.
+Execute `npm test` e `npm run build`, abra o preview e confira a navegação, os cases e a apresentação em telas pequenas. Revise os dados pessoais e o destino do contato antes de compartilhar o site. O portfólio é estático. O projeto não inclui painel administrativo, formulário de contato ou armazenamento de mensagens.
 
 Documentação oficial: [Como criar um site no GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
