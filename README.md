@@ -1,6 +1,6 @@
 # Portfólio — Ícaro Braga
 
-Portfólio minimalista de design e direção de arte, com imagens em destaque, cases individuais e quatro áreas: **Trabalhos**, **Quem sou eu**, **Experiência profissional** e **Contato**. Mantém a tipografia Space Grotesk, detalhes em Space Mono e um acento amarelo discreto sobre fundo claro.
+Portfólio minimalista de design e direção de arte, com imagens em destaque, cases individuais e quatro áreas: **Trabalhos**, **Quem sou eu**, **Experiência profissional** e **Contato**. Mantém a tipografia Space Grotesk, detalhes em Space Mono e um acento amarelo discreto sobre fundo carvão, com textos claros e imagens em suas cores originais.
 
 A seleção inicial apresenta **Wine Gourmet, Amorévo e EndoAfetos**, com escopo de autoria confirmado pelo proprietário e imagens do acervo dos projetos. Não foram acrescentados resultados, clientes ou datas sem confirmação.
 
