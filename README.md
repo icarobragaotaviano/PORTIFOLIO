@@ -1,125 +1,76 @@
-# PORTIFOLIO
+# Portfólio — Ícaro Braga
 
-Portfólio de direção de arte e design de **Icaro Braga**, com composição editorial contemporânea, tipografia **Space Grotesk** e **Space Mono**, identidade visual em amarelo solar (`#ffd401`) e obsidian (`#010101`), logotipo com o monograma geométrico **IB**, projetos em destaque e páginas individuais de cases. O código gera um portfólio estático e responsivo.
+Portfólio minimalista de design e direção de arte, com imagens em destaque, cases individuais e quatro áreas: **Trabalhos**, **Quem sou eu**, **Experiência profissional** e **Contato**. Mantém a tipografia Space Grotesk, detalhes em Space Mono e um acento amarelo discreto sobre fundo claro.
 
-[Repositório no GitHub](https://github.com/icarobragaotaviano/PORTIFOLIO)
+A seleção inicial apresenta **Wine Gourmet, Amorévo e EndoAfetos**, com escopo de autoria confirmado pelo proprietário e imagens do acervo dos projetos. Não foram acrescentados resultados, clientes ou datas sem confirmação.
 
-### Identidade visual & Assets
-- **Tipografia:** `Space Grotesk` (principal) e `Space Mono` (detalhes técnicos, números e metadados).
-- **Símbolo do Logotipo:** Monograma geométrico hexagonal `IB` em vetor SVG (`public/images/logo.svg`) e raster de alta fidelidade (`public/images/logo.png`).
-- **Paleta de cores:** Amarelo solar (`#ffd401`), âmbar (`#f5b802`), ouro suave (`#ffe76b`), preto profundo (`#010101`), obsidiana (`#101010`), grafite (`#181818`), cinzas estruturais (`#333333`, `#8a8a8a`, `#d9d9d9`), papel quente editorial (`#f7f4ef`) e branco puro (`#ffffff`).
+## Rodar localmente
 
-## Conteúdo demonstrativo
-
-**VÉRTICE**, **Casa Sol** e **Entrelinhas** são estudos conceituais fictícios criados para demonstrar a interface. Não representam clientes, campanhas veiculadas, trabalhos comerciais, prêmios ou resultados reais. As páginas mantêm essa identificação visível.
-
-**WineGourmet** é apenas um espaço reservado. Conteúdo, escopo e créditos ainda não foram fornecidos; sua presença não afirma autoria ou vínculo profissional. Adicione materiais e informações verificáveis antes de apresentar qualquer projeto como trabalho realizado.
-
-## Preview local
-
-Requer **Node.js 22 ou superior**, com npm. O projeto não tem dependências externas de execução ou de build: não é necessário rodar `npm install`.
+Requer Node.js 22 ou superior. Não há dependências para instalar.
 
 ```sh
-git clone https://github.com/icarobragaotaviano/PORTIFOLIO.git
-cd PORTIFOLIO
 npm run dev
 ```
 
-Abra **http://localhost:4173**. O comando gera o site e inicia o servidor local.
-
-O servidor não acompanha alterações automaticamente. Após editar um arquivo, execute `npm run build` em outro terminal e recarregue a página no navegador. Para encerrar o servidor, use `Ctrl+C`.
-
-| Comando | Função |
-| --- | --- |
-| `npm run dev` | Faz o build inicial e serve o site em `localhost:4173`. |
-| `npm run build` | Gera os arquivos estáticos na pasta `dist/`. |
-| `npm run preview` | Serve o conteúdo já gerado em `dist/`. |
-| `npm test` | Executa os testes automatizados do projeto. |
-
-## Personalização do portfólio
-
-Edite `src/content.mjs` para atualizar os dados do portfólio:
-
-- `site.name`, `site.initials` e `site.role`: nome, iniciais e área de atuação.
-- `site.description`: apresentação usada pelo site.
-- `site.github`: perfil ou endereço de contato no GitHub.
-- `site.email`: e-mail para contato. Quando está vazio, o contato usa o GitHub.
-- `site.wordmark.primary` e `site.wordmark.secondary`: marca tipográfica e assinatura da abertura.
-- `projects`: títulos, categorias, textos, imagens, serviços e entregas de cada case.
-
-Os projetos usam `status: 'demo'` para estudos demonstrativos e `status: 'placeholder'` para espaços reservados. Preserve as notas de contexto enquanto o conteúdo for fictício. Evite preencher ano, cliente, créditos ou resultados com informações que não foram confirmadas.
-
-Adicione imagens a `public/images/` e aponte o campo `image` do case para um caminho como `/images/meu-projeto.svg`. Escreva um `alt` que descreva o conteúdo relevante da imagem. Para mudar a direção visual, edite `public/styles.css`; as interações ficam em `public/app.js`.
-
-```text
-PORTIFOLIO/
-├── .github/workflows/pages.yml  # Publicação manual no GitHub Pages
-├── public/
-│   ├── app.js                   # Interações da interface
-│   ├── styles.css               # Estilos e responsividade
-│   └── images/                  # Artes SVG e outras imagens
-├── scripts/
-│   ├── build.mjs                # Gerador do site estático
-│   └── serve.mjs                # Servidor local para preview
-├── src/
-│   ├── content.mjs              # Dados do site e dos projetos
-│   └── templates.mjs            # Templates HTML
-├── tests/                      # Testes automatizados
-└── dist/                       # Saída gerada pelo build
-```
-
-Edite os arquivos de origem; alterações feitas diretamente em `dist/` serão substituídas no próximo build.
-
-## Build e deploy
-
-Para hospedar na raiz de um domínio, use:
+Abra http://127.0.0.1:4173. Depois de editar fontes, execute `npm run build` e recarregue o navegador.
 
 ```sh
+npm test
 npm run build
 ```
 
-Publique o **conteúdo de `dist/`** em uma hospedagem estática para disponibilizar o portfólio. Quando o serviço pedir configurações de build, informe `npm run build` como comando e `dist` como diretório de saída. Use Node.js 22 ou superior no ambiente de build.
+## Seu painel de trabalhos
+
+Abra **`/admin/`** no domínio do portfólio (ou `/PORTIFOLIO/admin/` no GitHub Pages). O painel permite criar, editar, remover e reordenar trabalhos, enviar capa e galeria, escrever o case e conferir uma prévia antes de publicar.
+
+O acesso usa a conta GitHub **icarobragaotaviano**, validada pela API do GitHub. Para entrar:
+
+1. Em [GitHub → Fine-grained personal access tokens](https://github.com/settings/personal-access-tokens/new), crie um token com prazo de expiração.
+2. Selecione somente o repositório **PORTIFOLIO** e a permissão **Contents: Read and write**. Metadata é incluída pelo GitHub.
+3. Cole o token no campo de acesso do painel. Não envie o token por mensagem nem coloque-o nos arquivos do site.
+
+O token é mantido apenas na memória da aba e apagado ao sair ou recarregar. O painel não tem senha embutida nem grava credenciais no navegador. A API do GitHub verifica as permissões de leitura e escrita; a tela de acesso é pública, mas a edição exige credencial válida do proprietário. Use o painel em HTTPS ou no localhost de desenvolvimento.
+
+O botão **Publicar alterações** salva o conteúdo e as imagens no GitHub, na branch `main`. As alterações feitas no formulário ficam apenas na aba até essa confirmação. O repositório é público: textos e imagens publicados ficam visíveis também no histórico do GitHub. Não use o painel para armazenar materiais confidenciais.
+
+A gravação no GitHub e a publicação da hospedagem são etapas distintas. O painel confirma o commit e mostra um link para ele. A Vercel ou o GitHub Pages precisa concluir seu build para a mudança aparecer no site. O fluxo não exige banco de dados ou serviço de CMS adicional.
+
+Se houver alteração concorrente no repositório, o painel interrompe a gravação para evitar sobrescrever o trabalho de outra sessão. Copie suas alterações antes de recarregar. Imagens aceitas: JPEG, PNG e WebP, até 3 MB por arquivo, uma capa e até oito imagens de galeria.
+
+## Conteúdo e código
+
+- `src/portfolio.json`: lista e ordem dos trabalhos, usada pelo painel e pelo build.
+- `src/content.mjs`: apresentação, experiência, contatos e dados pessoais já existentes.
+- `src/templates.mjs`: página pública e cases.
+- `src/admin-template.mjs`: painel separado, sem indexação e sem scripts externos.
+- `public/styles.css` e `public/app.js`: apresentação e navegação pública.
+- `public/admin.js`, `admin.css` e `github-cms.js`: editor e integração com o GitHub.
+- `public/content-schema.js`: validação compartilhada pelo editor e pelo build.
+- `public/images/work/`: imagens dos três trabalhos iniciais.
+- `public/uploads/`: novas imagens enviadas pelo painel.
+- `dist/`: saída gerada; não editar diretamente.
+
+As imagens devem ter descrição acessível. O build verifica os caminhos e recusa referências ausentes. Caso use exemplos ou espaços reservados no futuro, marque `status` como `demo` ou `placeholder` e inclua uma nota de contexto; trabalhos reais usam `published`.
+
+## Hospedagem
 
 ### Vercel
 
-Importe este repositório na Vercel. O arquivo `vercel.json` define a saída estática `dist/` e executa os testes antes do build com caminho base `/`. Use Node.js 22 ou superior.
-
-Se o repositório já estiver vinculado à Vercel, a integração seguirá as regras de publicação configuradas na sua conta. Um deploy pode exigir login, conforme a proteção do projeto. A validação local não confirma acesso público ao endereço remoto.
+Importe o repositório usando `npm run build`, saída `dist` e Node.js 22+. O `vercel.json` executa os testes antes do build. Se a integração GitHub já estiver conectada, commits no painel acionam o fluxo configurado na Vercel.
 
 ### GitHub Pages
 
-Um site de projeto no GitHub Pages fica em um subdiretório. Para este repositório, o caminho base é **`/PORTIFOLIO/`**, com a mesma capitalização do nome do repositório.
+Em **Settings → Pages**, selecione **GitHub Actions**. O workflow existente publica após pushes em `main` e também permite execução manual. Ele gera o site com o caminho base `/PORTIFOLIO/`.
 
-O GitHub Pages publica os arquivos estáticos do portfólio gerados em `dist/`.
-
-O workflow `.github/workflows/pages.yml` permite iniciar a publicação manualmente:
-
-1. No repositório, abra **Settings → Pages**.
-2. Em **Build and deployment → Source**, selecione **GitHub Actions**.
-3. Abra **Actions** e selecione o workflow de publicação do Pages.
-4. Clique em **Run workflow** e acompanhe a execução.
-5. Após uma execução bem-sucedida, consulte o endereço publicado em **Settings → Pages** ou no resultado do workflow.
-
-O workflow é acionado manualmente; um commit, por si só, não inicia a publicação. Estas instruções não indicam que um deploy já foi realizado.
-
-Se preferir gerar os arquivos para publicação manual no Pages, use uma das opções:
-
-```sh
-BASE_PATH=/PORTIFOLIO/ npm run build
-```
-
-Ou, sem depender da sintaxe de variável de ambiente do terminal:
+Para conferir essa versão localmente:
 
 ```sh
 node scripts/build.mjs --base /PORTIFOLIO/
+BASE_PATH=/PORTIFOLIO/ npm run preview
 ```
 
-Publique a pasta `dist/` gerada com esse caminho base. Para voltar ao preview local na raiz, execute novamente `npm run build` sem `BASE_PATH`.
+Abra http://127.0.0.1:4173/PORTIFOLIO/. Para voltar à raiz, execute `npm run build` sem caminho base.
 
-Para testar o build de Pages localmente: `BASE_PATH=/PORTIFOLIO/ npm run preview`, depois abra `http://localhost:4173/PORTIFOLIO/`.
+A disponibilidade do endereço publicado depende da configuração e conclusão da hospedagem; o build local não confirma o deploy remoto.
 
-## Verificação antes de publicar
-
-Execute `npm test` e `npm run build`, abra o preview e confira a navegação, os cases e a apresentação em telas pequenas. Revise os dados pessoais e o destino do contato antes de compartilhar o site. O portfólio é estático. O projeto não inclui painel administrativo, formulário de contato ou armazenamento de mensagens.
-
-Documentação oficial: [Como criar um site no GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+Documentação: [permissões de tokens GitHub](https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens), [API de conteúdo](https://docs.github.com/en/rest/repos/contents), [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
