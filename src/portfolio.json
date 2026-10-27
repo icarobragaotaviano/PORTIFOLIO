@@ -1,0 +1,128 @@
+{
+  "projects": [
+    {
+      "slug": "winegourmet",
+      "title": "Wine Gourmet",
+      "subtitle": "Descobrindo vinhos.",
+      "category": "Branding",
+      "year": "Ano não informado",
+      "number": "01",
+      "status": "published",
+      "image": "/images/work/wine-gourmet-assinaturas.webp",
+      "alt": "Versões originais do logotipo Wine Gourmet, com ilustração de vinho e queijo e monogramas coloridos WG.",
+      "services": [
+        "Logotipo",
+        "Identidade visual",
+        "Direção de arte",
+        "Identidade fotográfica"
+      ],
+      "intro": "Identidade visual para uma loja online de vinhos em Portugal, com seleção de pequenos produtores e marcas consolidadas. Trabalho contratado, realizado individualmente em 30 dias, com produto lançado.",
+      "challenge": "Apresentar uma seleção criteriosa de vinhos com proximidade e dar confiança à descoberta de rótulos pouco conhecidos.",
+      "concept": "Descobrindo vinhos: aproximar a curadoria da loja dos momentos de mesa, presente e convivência.",
+      "solution": "Versões de logotipo, monogramas, paleta, padrões e direção de imagem formam o sistema visual. As composições de Dia do Pai mostram a aplicação da identidade em comunicação comercial.",
+      "deliverables": [
+        "Logotipo e versões de assinatura",
+        "Sistema de identidade visual",
+        "Manual de marca",
+        "Direção de arte para site e redes sociais"
+      ],
+      "note": "Logotipo, identidade visual, direção de arte e identidade fotográfica: Ícaro Braga. A composição de Dia do Pai inclui imagem de campanha produzida com IA, conforme a documentação do projeto. A veiculação de cada peça não está documentada.",
+      "gallery": [
+        {
+          "image": "/images/work/wine-gourmet-marca.webp",
+          "alt": "Prancha original da Wine Gourmet com aplicação da marca em sacola e versões do logotipo."
+        },
+        {
+          "image": "/images/work/wine-gourmet-dia-do-pai.webp",
+          "alt": "Composição de Dia do Pai com imagem de campanha produzida com IA, oferta de 10% e situação de presente entre pai e filho."
+        },
+        {
+          "image": "/images/work/wine-gourmet-manual.webp",
+          "alt": "Manual original da Wine Gourmet com logotipos, cores, padrões, referências de imagem e tipografia."
+        }
+      ]
+    },
+    {
+      "slug": "amorevo",
+      "title": "Amorévo",
+      "subtitle": "Onde o Amor vira Sabor.",
+      "category": "Embalagem",
+      "year": "Ano não informado",
+      "number": "02",
+      "status": "published",
+      "image": "/images/work/amorevo-frutos-vermelhos-capa.webp",
+      "alt": "Detalhe original do rótulo de compota de Frutos Vermelhos Amorévo, com lettering verde e painel amarelo.",
+      "services": [
+        "Logotipo",
+        "Identidade visual",
+        "Direção de arte"
+      ],
+      "intro": "Identidade para uma marca de compotas e antepastos caseiros. Brasilidade, caráter artesanal e aconchego orientam a apresentação para o público europeu.",
+      "challenge": "Expressar o cuidado caseiro e diferenciar sabores, mantendo uma estrutura reconhecível entre os produtos.",
+      "concept": "Uma linguagem calorosa, com ingredientes e formas orgânicas, para comunicar brasilidade e aconchego.",
+      "solution": "Logotipo verde, painel central claro e faixas de categoria organizam a família de rótulos. Os fundos e as cores variam conforme os sabores, enquanto informações de identificação e consulta técnica ocupam áreas próprias.",
+      "deliverables": [
+        "Logotipo",
+        "Identidade visual",
+        "Direção de arte",
+        "Sistema visual aplicado a rótulos"
+      ],
+      "note": "Logotipo, identidade visual e direção de arte: Ícaro Braga. Galeria com artes planas extraídas dos rótulos originais. Período, aprovação comercial e tiragem não informados.",
+      "gallery": [
+        {
+          "image": "/images/work/amorevo-frutos-vermelhos-rotulo.webp",
+          "alt": "Arte plana original do rótulo de compota de Frutos Vermelhos, com marca, sabor e informações técnicas."
+        },
+        {
+          "image": "/images/work/amorevo-tapenade-rotulo.webp",
+          "alt": "Arte plana original do rótulo de Tapenade de Azeitona Amorévo."
+        },
+        {
+          "image": "/images/work/amorevo-pimentos-rotulo.webp",
+          "alt": "Arte plana original do rótulo de agridoce de 3 Pimentos Amorévo."
+        }
+      ]
+    },
+    {
+      "slug": "endoafetos",
+      "title": "EndoAfetos",
+      "subtitle": "Identidade para informar e acolher.",
+      "category": "Identidade visual",
+      "year": "Ano não informado",
+      "number": "03",
+      "status": "published",
+      "image": "/images/work/endoafetos-marca.webp",
+      "alt": "Prancha original da marca EndoAfetos com símbolo em violeta e assinatura magenta sobre fundo claro.",
+      "services": [
+        "Logotipo",
+        "Identidade visual",
+        "Direção de arte"
+      ],
+      "intro": "Identidade visual para uma iniciativa de apoio psicológico e informação sobre endometriose, voltada a mulheres na Bahia.",
+      "challenge": "Conciliar acolhimento e uma imagem sólida em uma marca dedicada à informação e ao apoio.",
+      "concept": "Uma presença visual sensível e organizada para dar expressão ao propósito de informar e acolher.",
+      "solution": "Símbolo, assinatura serifada, paleta em violeta e magenta e padrões derivados das formas da marca compõem o sistema. Fundos claros e áreas de cor articulam suas aplicações gráficas.",
+      "deliverables": [
+        "Logotipo",
+        "Sistema de identidade visual",
+        "Paleta e padrões",
+        "Direção de arte"
+      ],
+      "note": "Logotipo, identidade visual e direção de arte: Ícaro Braga. Galeria com pranchas originais do sistema da marca. A contribuição apresentada é visual; autoria e validação dos conteúdos de saúde devem ser creditadas aos responsáveis.",
+      "gallery": [
+        {
+          "image": "/images/work/endoafetos-paleta.webp",
+          "alt": "Paleta original de EndoAfetos, com magenta, violeta, azul e fundo claro."
+        },
+        {
+          "image": "/images/work/endoafetos-tipografia.webp",
+          "alt": "Prancha tipográfica original do sistema EndoAfetos sobre fundo azul com padrão linear."
+        },
+        {
+          "image": "/images/work/endoafetos-padrao.webp",
+          "alt": "Padrão original em traços claros sobre fundo azul, derivado das formas da marca EndoAfetos."
+        }
+      ]
+    }
+  ]
+}

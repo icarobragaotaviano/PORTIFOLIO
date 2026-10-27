@@ -41,8 +41,8 @@ for (const base of ['/', '/PORTIFOLIO/']) {
   test(`build ${base}: todas as páginas, links, imagens e âncoras locais existem`, async () => {
     const { outDir, pages } = builds.get(base);
     const files = await htmlFiles(outDir);
-    assert.equal(pages, 6);
-    assert.equal(files.length, 6);
+    assert.equal(pages, projects.length + 3);
+    assert.equal(files.length, projects.length + 3);
     assert.ok((await stat(join(outDir, '.nojekyll'))).isFile());
     const htmlCache = new Map(await Promise.all(files.map(async (file) => [file, await readFile(file, 'utf8')])));
 
@@ -72,52 +72,32 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     }
   });
 
-  test(`build ${base}: os quatro cases preservam sua natureza demonstrativa ou reservada`, async () => {
+  test(`build ${base}: trabalhos reais e créditos são preservados`, async () => {
     const { outDir } = builds.get(base);
-    assert.equal(projects.length, 4);
-    assert.equal(projects.filter((project) => project.status === 'demo').length, 3);
+    assert.ok(projects.length >= 3);
     for (const project of projects) {
       const html = await readFile(join(outDir, 'projetos', project.slug, 'index.html'), 'utf8');
-      assert.ok(html.includes(escape(project.note)), `Nota de contexto ausente: ${project.slug}`);
       assert.ok(html.includes(escape(project.title)));
-      if (project.status === 'demo') {
-        assert.match(html, /CASE DEMONSTRATIVO/);
-        assert.match(html, /Estudo autoral fictício/);
-        assert.ok(project.image, `Case demonstrativo sem imagem: ${project.slug}`);
-      } else {
-        assert.equal(project.slug, 'winegourmet');
-        assert.equal(project.image, null);
-        assert.match(html, /ESPAÇO RESERVADO/);
-        assert.match(html, /Aguardando conteúdo real/);
-        assert.doesNotMatch(html, /class="case-cover"/);
-      }
+      if (project.note) assert.ok(html.includes(escape(project.note)), `Crédito ausente: ${project.slug}`);
+      for (const entry of project.gallery || []) assert.ok(html.includes(escape(entry.alt)));
     }
   });
 
-  test(`build ${base}: página inicial inclui Motion, Criações com IA, Quem Sou Eu, Currículo, Blog, Redes Sociais e Contatos`, async () => {
+  test(`build ${base}: quatro áreas principais e acesso separado ao painel`, async () => {
     const { outDir } = builds.get(base);
     const html = await readFile(join(outDir, 'index.html'), 'utf8');
-    for (const sectionId of ['projetos', 'motion', 'criacoes-ia', 'sobre', 'curriculo', 'blog', 'redes-sociais', 'contato']) {
-      assert.match(html, new RegExp(`id="${sectionId}"`), `Seção #${sectionId} ausente na home`);
+    for (const sectionId of ['projetos', 'sobre', 'experiencia', 'contato']) {
+      assert.match(html, new RegExp(`id="${sectionId}"`), `Seção #${sectionId} ausente`);
     }
-    assert.ok(html.includes('Ícaro Braga Otaviano'));
-    assert.ok(html.includes('(88) 99652-1395'));
-    assert.ok(html.includes('icarobragaotaviano@gmail.com'));
-    assert.ok(html.includes('Fortaleza, Ceará, BR'));
-    assert.ok(html.includes('Bolero Comunicação'));
-    assert.ok(html.includes('MS Confecções'));
-    assert.ok(html.includes('Colégio Paiva Andrade'));
-    assert.ok(html.includes('Colégio Pequeno Príncipe'));
-    assert.ok(html.includes('JCRA – Jornada Cearense de Reprodução Assistida'));
-    assert.ok(html.includes('ENPRA – Encontro Nordestino de Psicologia em Reprodução Assistida'));
-    assert.ok(html.includes('Rádio Educadora do Cariri'));
-    assert.ok(html.includes('Humani Clin'));
-    assert.ok(html.includes('Hemoce'));
-    assert.ok(html.includes('Instituto Elo Amigo'));
-    assert.match(html, /id="owner-profile-photo"/);
-    assert.ok(html.includes('images/profile-placeholder.svg'));
-    assert.match(html, /id="owner-access-btn"/);
+    for (const value of ['Ícaro Braga', 'icarobragaotaviano@gmail.com', 'Bolero Comunicação', 'Colégio Paiva Andrade']) assert.ok(html.includes(value));
+    assert.ok(html.includes(`${base}admin/`));
+    assert.doesNotMatch(html, /data-edit-img|owner-access-btn|site-overrides/);
+    const admin = await readFile(join(outDir, 'admin/index.html'), 'utf8');
+    assert.match(admin, /name="robots" content="noindex/);
+    assert.ok(admin.includes(`${base}admin.js`));
+    assert.doesNotMatch(admin, /fonts\.googleapis|app\.js/);
   });
+
 }
 
 test('texto editável é escapado tanto em conteúdo quanto em atributos HTML', () => {
@@ -179,7 +159,7 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     assert.equal(head.body.length, 0);
     assert.equal(head.headers['content-length'], get.body.length);
 
-    for (const [path, type] of [['styles.css', /^text\/css/], ['app.js', /^text\/javascript/], ['images/vertice.svg', /^image\/svg\+xml/]]) {
+    for (const [path, type] of [['styles.css', /^text\/css/], ['app.js', /^text\/javascript/], ['admin.js', /^text\/javascript/]]) {
       const asset = await request(server, `${base}${path}`);
       assert.equal(asset.status, 200);
       assert.match(asset.headers['content-type'], type);
@@ -195,9 +175,9 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     assert.equal(post.status, 405);
     assert.equal(post.headers.allow, 'GET, HEAD');
 
-    const redirect = await request(server, `${base}projetos/vertice?origem=teste`);
+    const redirect = await request(server, `${base}projetos/${projects[0].slug}?origem=teste`);
     assert.equal(redirect.status, 308);
-    assert.equal(redirect.headers.location, `${base}projetos/vertice/?origem=teste`);
+    assert.equal(redirect.headers.location, `${base}projetos/${projects[0].slug}/?origem=teste`);
     assert.equal(redirect.body.length, 0);
     assert.equal((await request(server, redirect.headers.location)).status, 200);
     if (base !== '/') assert.equal((await request(server, '/')).status, 404);
