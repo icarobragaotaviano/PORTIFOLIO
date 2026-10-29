@@ -24,3 +24,18 @@ if (menuButton && navigation) {
   });
   window.matchMedia('(min-width: 701px)').addEventListener('change', closeMenu);
 }
+
+(() => {
+  const base = document.body?.dataset?.base || '/';
+  const openStudio = () => { window.location.href = `${base}studio/`; };
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'e') {
+      event.preventDefault();
+      openStudio();
+    }
+  });
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('admin') || params.has('studio') || ['#admin', '#studio'].includes(window.location.hash)) {
+    openStudio();
+  }
+})();

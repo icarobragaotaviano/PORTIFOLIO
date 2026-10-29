@@ -12,7 +12,88 @@ const icons = {
   list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>', search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>', arrow:'<path d="M7 17 17 7M7 7h10v10"/>', settings:'<path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/>', eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>', back:'<path d="m12 5-7 7 7 7M5 12h14"/>', more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>', grip:'<path d="M9 4h.01M15 4h.01M9 9h.01M15 9h.01M9 15h.01M15 15h.01M9 20h.01M15 20h.01"/>', trash:'<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/>', up:'<path d="m6 15 6-6 6 6"/>', down:'<path d="m6 9 6 6 6-6"/>', close:'<path d="m6 6 12 12M6 18 18 6"/>', check:'<path d="m5 12 4 4L19 6"/>', copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>', divider:'<path d="M3 12h18M12 4v2M12 18v2"/>', lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/>', logout:'<path d="M9 4H4v16h5m6-13 5 5-5 5m-7-5h12"/>'
 };
 const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.plus}</svg>`;
-let projects = [], current = null, dirty = false, busy = false, uploading = false, tab = 'all', query = '', category = '', view = 'grid', reorder = false, dragging = null, fileAction = null;
+let projects = [], current = null, dirty = false, busy = false, uploading = false, tab = 'all', query = '', category = '', view = 'grid', reorder = false, dragging = null, fileAction = null, localMode = false;
+const AUTH_KEY = 'ib_studio_auth_v1', SESSION_KEY = 'ib_studio_session_v1', PROJECTS_KEY = 'ib_studio_projects_v1';
+
+async function hashPassword(password, salt) {
+  const bytes = new TextEncoder().encode(`${salt}:${password}`);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function localSeed() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PROJECTS_KEY) || 'null');
+    if (Array.isArray(saved) && saved.length) return saved;
+  } catch {}
+  try {
+    const url = new URL(`${base}api/portfolio`, location.origin); url.searchParams.set('action', 'public');
+    const res = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
+    const data = await res.json();
+    if (Array.isArray(data?.projects)) {
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(data.projects));
+      return data.projects;
+    }
+  } catch {}
+  return [];
+}
+
+async function localApi(action, { method = 'GET', body, id } = {}) {
+  let auth = null;
+  try { auth = JSON.parse(localStorage.getItem(AUTH_KEY) || 'null'); } catch {}
+  const authenticated = Boolean(auth && sessionStorage.getItem(SESSION_KEY) === '1');
+  if (action === 'session') return { authenticated, setupRequired: !auth, configured: Boolean(auth), storageConfigured: true };
+  if (action === 'setup' && method === 'POST') {
+    const password = String(body?.password || '');
+    if (password.length < 12) throw new Error('Escolha uma senha com pelo menos 12 caracteres.');
+    const salt = [...crypto.getRandomValues(new Uint8Array(16))].map(b => b.toString(16).padStart(2, '0')).join('');
+    const hash = await hashPassword(password, salt);
+    localStorage.setItem(AUTH_KEY, JSON.stringify({ salt, hash }));
+    return { configured: true, authenticated: false, setupRequired: false };
+  }
+  if (action === 'login' && method === 'POST') {
+    if (!auth) throw new Error('Crie sua senha primeiro.');
+    const hash = await hashPassword(String(body?.password || ''), auth.salt);
+    if (hash !== auth.hash) throw new Error('Senha incorreta.');
+    sessionStorage.setItem(SESSION_KEY, '1');
+    return { authenticated: true };
+  }
+  if (action === 'logout' && method === 'POST') {
+    sessionStorage.removeItem(SESSION_KEY);
+    return { authenticated: false };
+  }
+  if (!authenticated) { current = null; dirty = false; await boot(); throw new Error('Sessão expirada. Entre novamente.'); }
+  const list = await localSeed();
+  const persist = (next) => { localStorage.setItem(PROJECTS_KEY, JSON.stringify(next)); return next; };
+  if (action === 'projects') return { projects: list };
+  if (action === 'upload' && method === 'POST') return { url: body.dataUrl };
+  if (action === 'project' && method === 'PUT') {
+    const item = { ...body, id: body.id || uid(), updatedAt: new Date().toISOString() };
+    const idx = list.findIndex(p => p.id === item.id);
+    if (idx < 0) list.unshift(item); else list[idx] = item;
+    persist(list);
+    return { project: item };
+  }
+  if (action === 'project' && method === 'DELETE') {
+    persist(list.filter(p => p.id !== id));
+    return { ok: true };
+  }
+  if (action === 'duplicate' && method === 'POST') {
+    const orig = list.find(p => p.id === id);
+    if (!orig) throw new Error('Projeto não encontrado.');
+    const copy = { ...structuredClone(orig), id: uid(), slug: `${orig.slug}-copia-${Date.now().toString(36).slice(-4)}`, title: `${orig.title} (Cópia)`, publication: 'draft', updatedAt: new Date().toISOString() };
+    list.splice(list.indexOf(orig) + 1, 0, copy);
+    persist(list);
+    return { project: copy };
+  }
+  if (action === 'order' && method === 'PUT') {
+    const ids = Array.isArray(body?.ids) ? body.ids : [];
+    const map = new Map(list.map(p => [p.id, p]));
+    const next = [...ids.map(k => map.get(k)).filter(Boolean), ...list.filter(p => !ids.includes(p.id))];
+    return { projects: persist(next) };
+  }
+  throw new Error('Ação indisponível.');
+}
 
 function toast(message, error = false) {
   const el = document.querySelector('#studio-toast');
@@ -20,10 +101,22 @@ function toast(message, error = false) {
   clearTimeout(toast.timer); toast.timer = setTimeout(() => el.className = '', 5000);
 }
 async function api(action, { method = 'GET', body, id } = {}) {
+  if (localMode && action !== 'session') return localApi(action, { method, body, id });
   const url = new URL(`${base}api/portfolio`, location.origin); url.searchParams.set('action', action); if (id) url.searchParams.set('id', id);
-  const response = await fetch(url, { method, credentials: 'same-origin', cache: 'no-store', ...(body === undefined ? {} : {headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)}) });
-  const data = await response.json().catch(() => ({ error:'Não foi possível ler a resposta do servidor.' }));
+  let response, data;
+  try {
+    response = await fetch(url, { method, credentials: 'same-origin', cache: 'no-store', ...(body === undefined ? {} : {headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)}) });
+    data = await response.json().catch(() => ({ error:'Não foi possível ler a resposta do servidor.' }));
+  } catch {
+    localMode = true;
+    return localApi(action, { method, body, id });
+  }
+  if (action === 'session' && (!response.ok || (!data.configured && !data.setupRequired) || data.storageConfigured === false)) {
+    localMode = true;
+    return localApi('session');
+  }
   if (!response.ok) { if (response.status === 401 && action !== 'login') { current = null; dirty = false; await boot(); } throw new Error(data.error || `Não foi possível concluir (${response.status}).`); }
+  localMode = false;
   return data;
 }
 const brand = `<a class="studio-brand" href="${base}" aria-label="Ícaro Braga — portfólio"><span class="brand-mark">ib<span>.</span></span><span>ÍCARO BRAGA<small>ESTÚDIO CRIATIVO</small></span></a>`;

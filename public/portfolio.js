@@ -246,7 +246,14 @@ function enhanceGallery(gallery) {
   gallery.querySelector('[data-portfolio-reset]').addEventListener('click', () => { filter = ''; input.value = ''; update(); input.focus(); });
 }
 
-async function publicProjects(base, slug) {
+async function publicProjects(base, slug = '') {
+  try {
+    const local = JSON.parse(localStorage.getItem('ib_studio_projects_v1') || 'null');
+    if (Array.isArray(local) && local.length) {
+      const published = local.filter(project => project.publication === 'published');
+      return slug ? { projects: published, project: published.find(item => item.slug === slug) || null } : { projects: published };
+    }
+  } catch {}
   const url = `${basePath(base)}api/portfolio?action=public${slug ? `&slug=${encodeURIComponent(slug)}` : ''}`;
   const response = await fetch(url, { headers: { Accept: 'application/json' }, credentials: 'same-origin' });
   if (!response.ok) return null;
@@ -331,14 +338,20 @@ async function initializePortfolio() {
     } catch { /* Static portfolio remains usable when the publishing service is unavailable. */ }
   } else {
     const article = document.querySelector('.pf-project[data-portfolio-slug]');
-    if (!article) return;
+    const slugMatch = !article ? window.location.pathname.match(/\/projetos\/([a-z0-9-]+)\/?/) : null;
+    const targetSlug = article?.dataset.portfolioSlug || slugMatch?.[1] || '';
+    if (!targetSlug) return;
     try {
-      const data = await publicProjects(base);
+      const data = await publicProjects(base, targetSlug);
       if (!data) return;
       const projects = list(data.projects).filter(project => project.publication === 'published');
-      const project = data.project || projects.find(item => item.slug === article.dataset.portfolioSlug);
+      const project = data.project || projects.find(item => item.slug === targetSlug);
       if (!project || project.publication !== 'published') return;
-      article.outerHTML = renderPortfolioProject(project, base, projects);
+      if (article) article.outerHTML = renderPortfolioProject(project, base, projects);
+      else {
+        const main = document.querySelector('#conteudo');
+        if (main) main.innerHTML = renderPortfolioProject(project, base, projects);
+      }
       enhanceReveals();
       document.title = `${project.title} — Ícaro Braga Otaviano`;
     } catch { /* Keep the server-rendered project if the request fails. */ }

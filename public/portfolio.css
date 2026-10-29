@@ -298,3 +298,11 @@
   ::view-transition-old(root),::view-transition-new(root) { animation:none; }
 }
 @media print { .pf-case-nav { display:none; } }
+.site-header nav .nav-studio-link { border:1px solid #353532; border-radius:999px; padding:6px 12px; color:#f2f1eb; font-size:11px; letter-spacing:.04em; transition:border-color .18s,color .18s,background .18s; }
+.site-header nav .nav-studio-link:hover,.site-header nav .nav-studio-link:focus-visible { border-color:#ffd401; color:#ffd401; }
+.site-header nav .nav-studio-link::after { display:none; }
+.section-meta-group { display:inline-flex; align-items:center; gap:16px; }
+.section-studio-link { color:#d2d1c9; border-bottom:1px solid #494942; padding-bottom:2px; transition:color .18s,border-color .18s; }
+.section-studio-link:hover,.section-studio-link:focus-visible { color:#ffd401; border-color:#ffd401; }
+.footer-bottom .owner-link { display:inline-flex; align-items:center; gap:6px; border:1px solid #353532; border-radius:999px; padding:6px 14px; color:#f2f1eb; font-weight:500; transition:border-color .18s,color .18s; }
+.footer-bottom .owner-link:hover,.footer-bottom .owner-link:focus-visible { border-color:#ffd401; color:#ffd401; }
