@@ -3,7 +3,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { projects } from '../src/content.mjs';
 import { home, casePage, layout, normalizeBase } from '../src/templates.mjs';
-import { adminPage } from '../src/admin-template.mjs';
+import { studioPage } from '../src/studio-template.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -23,10 +23,14 @@ export async function build({ outDir = resolve(root, 'dist'), base = '/' } = {})
   }
   await rm(destination, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
-  await cp(resolve(root, 'public'), destination, { recursive: true });
+  const retired = new Set(['admin.js', 'admin.css', 'github-cms.js'].map(name => resolve(root, 'public', name)));
+  const separateGames = resolve(root, 'public/jogos');
+  await cp(resolve(root, 'public'), destination, { recursive: true, filter: source => !retired.has(resolve(source)) && resolve(source) !== separateGames });
   await writeFile(resolve(destination, 'index.html'), home(base));
   await mkdir(resolve(destination, 'admin'), { recursive: true });
-  await writeFile(resolve(destination, 'admin', 'index.html'), adminPage(base));
+  await writeFile(resolve(destination, 'admin', 'index.html'), studioPage(base));
+  await mkdir(resolve(destination, 'studio'), { recursive: true });
+  await writeFile(resolve(destination, 'studio', 'index.html'), studioPage(base));
   for (const project of projects) {
     if (!/^[a-z0-9-]+$/.test(project.slug)) throw new Error(`Slug inválido: ${project.slug}`);
     const directory = resolve(destination, 'projetos', project.slug);
@@ -35,7 +39,7 @@ export async function build({ outDir = resolve(root, 'dist'), base = '/' } = {})
   }
   await writeFile(resolve(destination, '404.html'), layout({ base, title: 'Página não encontrada', noindex: true, body: `<section class="not-found wrap"><span class="eyebrow">404 / FORA DO ENQUADRAMENTO</span><h1>Outro olhar.</h1><p>Essa página não está por aqui. Os projetos estão logo ali.</p><a href="${base}#projetos">Explorar o portfólio ↗</a></section>` }));
   await writeFile(resolve(destination, '.nojekyll'), '');
-  return { outDir: destination, base, pages: projects.length + 3 };
+  return { outDir: destination, base, pages: projects.length + 4 };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

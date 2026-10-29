@@ -1,8 +1,8 @@
 # Portfólio — Ícaro Braga
 
-Portfólio minimalista de design e direção de arte, com imagens em destaque, cases individuais e quatro áreas: **Trabalhos**, **Quem sou eu**, **Experiência profissional** e **Contato**. Mantém a tipografia Space Grotesk, detalhes em Space Mono e um acento amarelo discreto sobre fundo carvão, com textos claros e imagens em suas cores originais.
+Portfólio escuro e minimalista de design e direção de arte, com imagens em destaque e quatro áreas: **Trabalhos**, **Quem sou eu**, **Experiência profissional** e **Contato**. A seleção inicial mantém **Wine Gourmet, Amorévo e EndoAfetos**, suas imagens originais, descrições e créditos de autoria.
 
-A seleção inicial apresenta **Wine Gourmet, Amorévo e EndoAfetos**, com escopo de autoria confirmado pelo proprietário e imagens do acervo dos projetos. Não foram acrescentados resultados, clientes ou datas sem confirmação.
+O Estúdio privado combina organização e edição inspiradas no fluxo do Behance com a identidade visual do portfólio: superfícies carvão, tipografia clara, bordas discretas e acentos amarelos.
 
 ## Rodar localmente
 
@@ -12,65 +12,79 @@ Requer Node.js 22 ou superior. Não há dependências para instalar.
 npm run dev
 ```
 
-Abra http://127.0.0.1:4173. Depois de editar fontes, execute `npm run build` e recarregue o navegador.
+Abra **http://127.0.0.1:4173/**. Depois de alterar arquivos-fonte, execute `npm run build` e recarregue a página. Validação completa:
 
 ```sh
 npm test
 npm run build
 ```
 
-## Seu painel de trabalhos
+## Experiência pública
 
-Abra **`/admin/`** no domínio do portfólio (ou `/PORTIFOLIO/admin/` no GitHub Pages). O painel permite criar, editar, remover e reordenar trabalhos, enviar capa e galeria, escrever o case e conferir uma prévia antes de publicar.
+As capas têm busca e filtros por área criativa. Cada case abre em uma página com imagens em sua proporção original, textos com hierarquia, ampliação das imagens, créditos, ferramentas e projetos relacionados. Durante a leitura, uma navegação discreta permite voltar à seleção ou passar ao trabalho anterior e ao próximo. O contato fica acessível no cabeçalho do case e no encerramento.
 
-O acesso usa a conta GitHub **icarobragaotaviano**, validada pela API do GitHub. Para entrar:
+As entradas de conteúdo usam movimentos breves de 12 px ao rolar; os estados de interação indicam abertura e ampliação. A navegação usa links nativos e não depende das animações para funcionar. A preferência por movimento reduzido é respeitada. Capas iniciais carregam imediatamente e imagens seguintes usam carregamento sob demanda.
 
-1. Em [GitHub → Fine-grained personal access tokens](https://github.com/settings/personal-access-tokens/new), crie um token com prazo de expiração.
-2. Selecione somente o repositório **PORTIFOLIO** e a permissão **Contents: Read and write**. Metadata é incluída pelo GitHub.
-3. Cole o token no campo de acesso do painel. Não envie o token por mensagem nem coloque-o nos arquivos do site.
+## Estúdio privado
 
-O token é mantido apenas na memória da aba e apagado ao sair ou recarregar. O painel não tem senha embutida nem grava credenciais no navegador. A API do GitHub verifica as permissões de leitura e escrita; a tela de acesso é pública, mas a edição exige credencial válida do proprietário. Use o painel em HTTPS ou no localhost de desenvolvimento.
+Abra **`/studio/`** ou o link **Área privada** no rodapé. O endereço anterior `/admin/` também conduz ao Estúdio.
 
-O botão **Publicar alterações** salva o conteúdo e as imagens no GitHub, na branch `main`. As alterações feitas no formulário ficam apenas na aba até essa confirmação. O repositório é público: textos e imagens publicados ficam visíveis também no histórico do GitHub. Não use o painel para armazenar materiais confidenciais.
+- **Organizar:** capas, busca, filtros, publicados e rascunhos, grade/lista, ordem por arraste ou setas.
+- **Criar:** blocos de imagem, texto (título, subtítulo ou parágrafo), grade de fotos, vídeo, incorporação e divisor; reordenação, duplicação, alinhamento, largura e legenda por bloco.
+- **Apresentar:** capa enviada ou escolhida entre as imagens do projeto; descrição, área criativa, tags, ferramentas, cliente, ano, créditos e nota de contexto; fundo, espaçamento e largura do canvas.
+- **Conferir:** a prévia usa o mesmo renderizador da página pública.
+- **Publicar:** salvar rascunho, publicar, atualizar, duplicar, mover para rascunhos e excluir projetos.
 
-A gravação no GitHub e a publicação da hospedagem são etapas distintas. O painel confirma o commit e mostra um link para ele. A Vercel ou o GitHub Pages precisa concluir seu build para a mudança aparecer no site. O fluxo não exige banco de dados ou serviço de CMS adicional.
+O fundo do projeto é independente do tema da interface e pode ser alterado no editor. Imagens originais preservam suas cores. Novos projetos começam com canvas escuro.
 
-Se houver alteração concorrente no repositório, o painel interrompe a gravação para evitar sobrescrever o trabalho de outra sessão. Copie suas alterações antes de recarregar. Imagens aceitas: JPEG, PNG e WebP, até 3 MB por arquivo, uma capa e até oito imagens de galeria.
+Use **Salvar rascunho** para guardar um projeto privado e **Continuar → Publicar projeto** para torná-lo público. Em um projeto já publicado, **Salvar alterações** atualiza sua apresentação pública. O editor avisa antes de sair com alterações não salvas; não há salvamento automático.
+
+Uploads aceitos: **PNG, JPG, GIF e WebP até 3 MB por arquivo**. Cada grade aceita até 12 fotos; projetos podem conter várias grades. Vídeos aceitam endereços HTTPS MP4, WebM ou OGG e incorporações do YouTube/Vimeo. Imagens sem referência em projetos permanecem armazenadas.
+
+### Primeiro acesso local
+
+Sem variáveis de acesso configuradas, `/studio/` oferece a criação da senha pelo proprietário, com pelo menos 12 caracteres. A senha é armazenada como hash com salt e a sessão usa cookie HttpOnly, com duração de oito horas.
+
+Projetos, credenciais locais e imagens ficam em **`.data/portfolio/`**, ignorados pelo Git e excluídos do build. Preserve essa pasta ao transferir uma instalação local. O armazenamento local não é sincronizado automaticamente com a hospedagem.
+
+### Configuração na Vercel
+
+Configure em cada ambiente:
+
+- `PORTFOLIO_ADMIN_PASSWORD`: senha do proprietário.
+- `PORTFOLIO_SESSION_SECRET`: segredo aleatório de pelo menos 32 caracteres.
+- `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN`: armazenamento durável de projetos e imagens.
+
+O `.env.example` contém apenas os nomes, sem valores reais. Também são aceitas as variáveis `KV_REST_API_URL` e `KV_REST_API_TOKEN` de um armazenamento Redis existente. A criação inicial de senha só é oferecida no servidor local. Na Vercel, configure as variáveis antes de usar a área privada; salvamentos e uploads ficam bloqueados sem armazenamento durável.
+
+Importe o repositório com saída `dist` e Node.js 22+. O `vercel.json` executa os testes antes do build e encaminha a homepage e as páginas de projetos para `api/portfolio.js`. Assim, a galeria e cada case refletem a publicação atual, inclusive sem JavaScript. Mover um projeto para rascunhos ou excluí-lo retira sua página do acesso público e protege imagens que só pertencem a projetos privados. As respostas usam `no-store`.
+
+Publicar um projeto em um Estúdio já hospedado é diferente de publicar uma nova versão do código do site. A disponibilidade remota depende da configuração e conclusão da hospedagem; a verificação local não confirma um deploy.
 
 ## Conteúdo e código
 
-- `src/portfolio.json`: lista e ordem dos trabalhos, usada pelo painel e pelo build.
-- `src/content.mjs`: apresentação, experiência, contatos e dados pessoais já existentes.
-- `src/templates.mjs`: página pública e cases.
-- `src/admin-template.mjs`: painel separado, sem indexação e sem scripts externos.
-- `public/styles.css` e `public/app.js`: apresentação e navegação pública.
-- `public/admin.js`, `admin.css` e `github-cms.js`: editor e integração com o GitHub.
-- `public/content-schema.js`: validação compartilhada pelo editor e pelo build.
-- `public/images/work/`: imagens dos três trabalhos iniciais.
-- `public/uploads/`: novas imagens enviadas pelo painel.
+- `src/portfolio.json`: seleção inicial dos trabalhos reais e suas galerias.
+- `src/content.mjs`: dados pessoais, apresentação, contatos e experiência; carrega a seleção inicial.
+- `src/templates.mjs`: homepage minimalista, navegação e estrutura pública.
+- `public/portfolio.js` e `portfolio.css`: galeria, canvas, ampliação, navegação e movimentos públicos.
+- `src/studio-template.mjs`, `public/studio.js` e `studio.css`: interface do Estúdio.
+- `server/portfolio-access.js`, `portfolio-store.js` e `portfolio-page.js`: autenticação, persistência e renderização atual.
+- `api/portfolio.js`: função da hospedagem.
+- `public/images/work/`: imagens originais dos três trabalhos iniciais.
+- `tests/`: validação de conteúdo, publicação, privacidade e persistência.
 - `dist/`: saída gerada; não editar diretamente.
 
-As imagens devem ter descrição acessível. O build verifica os caminhos e recusa referências ausentes. Caso use exemplos ou espaços reservados no futuro, marque `status` como `demo` ou `placeholder` e inclua uma nota de contexto; trabalhos reais usam `published`.
+A seleção inicial é importada quando o armazenamento ainda está vazio. Depois do primeiro salvamento, o Estúdio passa a usar o armazenamento, sem modificar `src/portfolio.json`. O editor anterior baseado em token GitHub não é carregado no build e seus scripts de publicação não são usados pelo Estúdio.
 
-## Hospedagem
+## GitHub Pages
 
-### Vercel
-
-Importe o repositório usando `npm run build`, saída `dist` e Node.js 22+. O `vercel.json` executa os testes antes do build. Se a integração GitHub já estiver conectada, commits no painel acionam o fluxo configurado na Vercel.
-
-### GitHub Pages
-
-Em **Settings → Pages**, selecione **GitHub Actions**. O workflow existente publica após pushes em `main` e também permite execução manual. Ele gera o site com o caminho base `/PORTIFOLIO/`.
-
-Para conferir essa versão localmente:
+O workflow existente publica após pushes em `main` e permite execução manual. Ele gera os arquivos com caminho base `/PORTIFOLIO/`.
 
 ```sh
 node scripts/build.mjs --base /PORTIFOLIO/
 BASE_PATH=/PORTIFOLIO/ npm run preview
 ```
 
-Abra http://127.0.0.1:4173/PORTIFOLIO/. Para voltar à raiz, execute `npm run build` sem caminho base.
+O GitHub Pages apresenta o conteúdo inicial estático. Ele **não executa a API privada**, portanto não oferece login, uploads, salvamento ou publicação pelo Estúdio. Use Vercel ou o servidor local para a experiência completa. Para voltar à raiz, execute o build sem caminho base.
 
-A disponibilidade do endereço publicado depende da configuração e conclusão da hospedagem; o build local não confirma o deploy remoto.
-
-Documentação: [permissões de tokens GitHub](https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens), [API de conteúdo](https://docs.github.com/en/rest/repos/contents), [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+Os jogos e seus dados permanecem separados do portfólio e não entram na saída pública deste build.

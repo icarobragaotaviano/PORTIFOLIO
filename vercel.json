@@ -2,5 +2,20 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "buildCommand": "npm test && node scripts/build.mjs --base /",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "functions": {
+    "api/portfolio.js": { "includeFiles": "{src/**,server/portfolio-*.js,public/portfolio.js,public/content-schema.js}", "maxDuration": 30 }
+  },
+  "redirects": [
+    { "source": "/studio", "destination": "/studio/", "permanent": false },
+    { "source": "/admin", "destination": "/studio/", "permanent": false },
+    { "source": "/admin/:path*", "destination": "/studio/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/api/portfolio?action=home" },
+    { "source": "/index.html", "destination": "/api/portfolio?action=home" },
+    { "source": "/projetos/:slug/", "destination": "/api/portfolio?action=page&slug=:slug" },
+    { "source": "/projetos/:slug/index.html", "destination": "/api/portfolio?action=page&slug=:slug" },
+    { "source": "/projetos/:slug", "destination": "/api/portfolio?action=page&slug=:slug" }
+  ]
 }

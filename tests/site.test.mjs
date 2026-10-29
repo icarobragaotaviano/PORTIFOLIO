@@ -41,8 +41,8 @@ for (const base of ['/', '/PORTIFOLIO/']) {
   test(`build ${base}: todas as páginas, links, imagens e âncoras locais existem`, async () => {
     const { outDir, pages } = builds.get(base);
     const files = await htmlFiles(outDir);
-    assert.equal(pages, projects.length + 3);
-    assert.equal(files.length, projects.length + 3);
+    assert.equal(pages, projects.length + 4);
+    assert.equal(files.length, projects.length + 4);
     assert.ok((await stat(join(outDir, '.nojekyll'))).isFile());
     const htmlCache = new Map(await Promise.all(files.map(async (file) => [file, await readFile(file, 'utf8')])));
 
@@ -75,11 +75,18 @@ for (const base of ['/', '/PORTIFOLIO/']) {
   test(`build ${base}: trabalhos reais e créditos são preservados`, async () => {
     const { outDir } = builds.get(base);
     assert.ok(projects.length >= 3);
+    for (const title of ['Wine Gourmet', 'Amorévo', 'EndoAfetos']) assert.ok(projects.some(project => project.title === title), `Trabalho real preservado: ${title}`);
     for (const project of projects) {
       const html = await readFile(join(outDir, 'projetos', project.slug, 'index.html'), 'utf8');
       assert.ok(html.includes(escape(project.title)));
       if (project.note) assert.ok(html.includes(escape(project.note)), `Crédito ausente: ${project.slug}`);
-      for (const entry of project.gallery || []) assert.ok(html.includes(escape(entry.alt)));
+      assert.ok(html.includes(`alt="${escape(project.alt)}"`), `Texto alternativo da capa ausente: ${project.slug}`);
+      for (const entry of project.gallery || []) {
+        assert.ok(html.includes(escape(entry.alt)), `Texto alternativo da galeria ausente: ${project.slug}`);
+        assert.ok(html.includes(`${base}${entry.image.replace(/^\//, '')}`), `Imagem original ausente: ${entry.image}`);
+      }
+      assert.match(html, /data-pf-image=/, 'A galeria permite ampliar as imagens');
+      assert.match(html, /data-pf-share/, 'O projeto oferece compartilhamento');
     }
   });
 
@@ -90,12 +97,23 @@ for (const base of ['/', '/PORTIFOLIO/']) {
       assert.match(html, new RegExp(`id="${sectionId}"`), `Seção #${sectionId} ausente`);
     }
     for (const value of ['Ícaro Braga', 'icarobragaotaviano@gmail.com', 'Bolero Comunicação', 'Colégio Paiva Andrade']) assert.ok(html.includes(value));
-    assert.ok(html.includes(`${base}admin/`));
+    assert.ok(html.includes(`${base}studio/`));
     assert.doesNotMatch(html, /data-edit-img|owner-access-btn|site-overrides/);
+    assert.match(html, /data-portfolio-gallery/);
+    assert.match(html, /data-portfolio-search-input/);
+    assert.match(html, /aria-label="Filtrar projetos por área"/);
+    assert.match(html, /aria-live="polite"/);
+    const studio = await readFile(join(outDir, 'studio/index.html'), 'utf8');
     const admin = await readFile(join(outDir, 'admin/index.html'), 'utf8');
-    assert.match(admin, /name="robots" content="noindex/);
-    assert.ok(admin.includes(`${base}admin.js`));
-    assert.doesNotMatch(admin, /fonts\.googleapis|app\.js/);
+    assert.equal(admin, studio, 'O endereço legado abre o mesmo Estúdio');
+    for (const shell of [studio, admin]) {
+      assert.match(shell, /name="robots" content="noindex/);
+      assert.ok(shell.includes(`${base}studio.js`));
+      assert.ok(shell.includes(`${base}studio.css`));
+      assert.match(shell, /id="studio-main"/);
+      assert.doesNotMatch(shell, /src="[^"]*(?:admin|app|github-cms)\.js"/);
+      for (const project of projects) assert.ok(!shell.includes(escape(project.note)), 'O shell privado não contém dados dos projetos');
+    }
   });
 
 }
@@ -140,14 +158,14 @@ async function request(server, url, method = 'GET') {
     },
     end(value) { body = value === undefined ? Buffer.alloc(0) : Buffer.from(value); },
   };
-  await server.listeners('request')[0]({ url, method }, response);
+  await server.listeners('request')[0]({ url, method, headers: { host: 'portfolio.test' }, async *[Symbol.asyncIterator]() {} }, response);
   assert.ok(body !== undefined, `Resposta não foi encerrada: ${method} ${url}`);
   return { status, headers, body };
 }
 
 for (const base of ['/', '/PORTIFOLIO/']) {
   test(`servidor ${base}: GET, HEAD, recursos, 404, métodos e redirecionamento`, async () => {
-    const server = createServer(builds.get(base).outDir, { base });
+    const server = createServer(builds.get(base).outDir, { base, portfolioDataDir: join(scratch, `server-${base === '/' ? 'root' : 'pages'}`), portfolioEnv: {} });
     const get = await request(server, base);
     assert.equal(get.status, 200);
     assert.match(get.headers['content-type'], /^text\/html/);
@@ -159,11 +177,18 @@ for (const base of ['/', '/PORTIFOLIO/']) {
     assert.equal(head.body.length, 0);
     assert.equal(head.headers['content-length'], get.body.length);
 
-    for (const [path, type] of [['styles.css', /^text\/css/], ['app.js', /^text\/javascript/], ['admin.js', /^text\/javascript/]]) {
+    for (const [path, type] of [['styles.css', /^text\/css/], ['app.js', /^text\/javascript/], ['studio.js', /^text\/javascript/], ['portfolio.js', /^text\/javascript/], ['studio.css', /^text\/css/], ['portfolio.css', /^text\/css/]]) {
       const asset = await request(server, `${base}${path}`);
       assert.equal(asset.status, 200);
       assert.match(asset.headers['content-type'], type);
       assert.ok(asset.body.length > 0);
+    }
+
+    for (const route of ['admin/', 'studio/']) {
+      const privateShell = await request(server, `${base}${route}`);
+      assert.equal(privateShell.status, 200);
+      assert.match(privateShell.body.toString(), /name="robots" content="noindex/);
+      assert.ok(privateShell.body.toString().includes(`${base}studio.js`));
     }
 
     const missing = await request(server, `${base}pagina-inexistente/`);
@@ -184,7 +209,7 @@ for (const base of ['/', '/PORTIFOLIO/']) {
   });
 
   test(`servidor ${base}: caminhos malformados e arquivos privados são recusados`, async () => {
-    const server = createServer(builds.get(base).outDir, { base });
+    const server = createServer(builds.get(base).outDir, { base, portfolioDataDir: join(scratch, `server-${base === '/' ? 'root' : 'pages'}`), portfolioEnv: {} });
     for (const path of ['.git/config', '.env', '..%2fpackage.json', 'projetos/%5c..%5cpackage.json', 'x%00.html']) {
       assert.equal((await request(server, `${base}${path}`)).status, 403, path);
     }
