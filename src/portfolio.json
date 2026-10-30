@@ -8,8 +8,8 @@
       "year": "Ano não informado",
       "number": "01",
       "status": "published",
-      "image": "/images/work/wine-gourmet-assinaturas.webp",
-      "alt": "Versões originais do logotipo Wine Gourmet, com ilustração de vinho e queijo e monogramas coloridos WG.",
+      "image": "/images/work/wine-gourmet/experiencia-presente.webp",
+      "alt": "Experiência Wine Gourmet: uma embalagem de vinho conecta o produtor à cliente através da loja online.",
       "services": [
         "Logotipo",
         "Identidade visual",
@@ -29,18 +29,162 @@
       "note": "Logotipo, identidade visual, direção de arte e identidade fotográfica: Ícaro Braga. A composição de Dia do Pai inclui imagem de campanha produzida com IA, conforme a documentação do projeto. A veiculação de cada peça não está documentada.",
       "gallery": [
         {
-          "image": "/images/work/wine-gourmet-marca.webp",
-          "alt": "Prancha original da Wine Gourmet com aplicação da marca em sacola e versões do logotipo."
+          "image": "/images/work/wine-gourmet/embalagem-identidade.webp",
+          "alt": "Apresentação da embalagem kraft Wine Gourmet com o logotipo e o grafismo de garrafa sobre fundo creme."
         },
         {
-          "image": "/images/work/wine-gourmet-dia-do-pai.webp",
-          "alt": "Composição de Dia do Pai com imagem de campanha produzida com IA, oferta de 10% e situação de presente entre pai e filho."
+          "image": "/images/work/wine-gourmet/campanha-chicane.webp",
+          "alt": "Campanha Chicane Vinhos: Fora do óbvio. Mais perto da origem. Vinhos direto do produtor para a mesa."
         },
         {
-          "image": "/images/work/wine-gourmet-manual.webp",
-          "alt": "Manual original da Wine Gourmet com logotipos, cores, padrões, referências de imagem e tipografia."
+          "image": "/images/work/wine-gourmet/dia-do-pai-banner.webp",
+          "alt": "Campanha Dia do Pai Wine Gourmet: filho entrega vinho ao pai; Um bom vinho nunca é demais; 10% OFF."
         }
-      ]
+      ],
+      "description": "Descobrindo vinhos. Identidade visual, embalagem e direção de arte para uma loja online de vinhos em Portugal.",
+      "client": "Wine Gourmet",
+      "credits": "Ícaro Braga — Logotipo, identidade visual, direção de arte e identidade fotográfica",
+      "styles": {
+        "background": "#111110",
+        "spacing": 24,
+        "width": 1400
+      },
+      "blocks": [
+        {
+          "id": "experiencia",
+          "type": "image",
+          "size": "full",
+          "src": "/images/work/wine-gourmet/experiencia-presente.webp",
+          "alt": "Experiência Wine Gourmet: uma embalagem de vinho conecta o produtor à cliente através da loja online.",
+          "width": 2704,
+          "height": 1670,
+          "responsiveSrc": "/images/work/wine-gourmet/experiencia-presente-960.webp"
+        },
+        {
+          "id": "identidade",
+          "type": "grid",
+          "size": "full",
+          "layout": "identity",
+          "images": [
+            {
+              "src": "/images/work/wine-gourmet/embalagem-presente.webp",
+              "alt": "Embalagem kraft Wine Gourmet, com assinatura tipográfica e ilustração linear de garrafa.",
+              "width": 640,
+              "height": 1670
+            },
+            {
+              "src": "/images/work/wine-gourmet/assinatura-principal.webp",
+              "alt": "Logotipo Wine Gourmet — Descobrindo Vinhos, com ilustração de garrafa e queijo sobre fundo creme.",
+              "width": 1328,
+              "height": 812,
+              "responsiveSrc": "/images/work/wine-gourmet/assinatura-principal-960.webp"
+            },
+            {
+              "src": "/images/work/wine-gourmet/simbolo-vinho-queijo.webp",
+              "alt": "Símbolo linear de garrafa e queijo sobre fundo verde.",
+              "width": 640,
+              "height": 812
+            },
+            {
+              "src": "/images/work/wine-gourmet/loja-mobile.webp",
+              "alt": "Aplicação da identidade Wine Gourmet na loja online vista em um celular.",
+              "width": 640,
+              "height": 811
+            },
+            {
+              "src": "/images/work/wine-gourmet/monograma-wg.webp",
+              "alt": "Monograma WG em creme sobre fundo vermelho, com grafismo de queijo.",
+              "width": 1328,
+              "height": 811,
+              "responsiveSrc": "/images/work/wine-gourmet/monograma-wg-960.webp"
+            }
+          ]
+        },
+        {
+          "id": "embalagem",
+          "type": "image",
+          "size": "full",
+          "src": "/images/work/wine-gourmet/embalagem-identidade.webp",
+          "alt": "Apresentação da embalagem kraft Wine Gourmet com o logotipo e o grafismo de garrafa sobre fundo creme.",
+          "width": 2704,
+          "height": 3388,
+          "responsiveSrc": "/images/work/wine-gourmet/embalagem-identidade-960.webp"
+        },
+        {
+          "id": "chicane",
+          "type": "image",
+          "size": "full",
+          "src": "/images/work/wine-gourmet/campanha-chicane.webp",
+          "alt": "Campanha Chicane Vinhos: Fora do óbvio. Mais perto da origem. Vinhos direto do produtor para a mesa.",
+          "width": 2704,
+          "height": 845,
+          "responsiveSrc": "/images/work/wine-gourmet/campanha-chicane-960.webp"
+        },
+        {
+          "id": "campanhas",
+          "type": "grid",
+          "size": "full",
+          "layout": "triptych",
+          "images": [
+            {
+              "src": "/images/work/wine-gourmet/kit-portugal-a-mesa.webp",
+              "alt": "Kit Portugal à Mesa: três vinhos apresentados com azulejos portugueses azuis e oferta comercial.",
+              "width": 880,
+              "height": 1100
+            },
+            {
+              "src": "/images/work/wine-gourmet/vinho-dos-mortos.webp",
+              "alt": "Vinho dos Mortos: garrafa entre a terra e a mensagem Há histórias que merecem ser desenterradas.",
+              "width": 880,
+              "height": 1100
+            },
+            {
+              "src": "/images/work/wine-gourmet/manolito-tinto.webp",
+              "alt": "Manolito Tinto 2021, DOC Alentejo: garrafa sobre cenário escuro e composição verde e vermelha.",
+              "width": 880,
+              "height": 1100
+            }
+          ]
+        },
+        {
+          "id": "dia-do-pai",
+          "type": "image",
+          "size": "full",
+          "src": "/images/work/wine-gourmet/dia-do-pai-banner.webp",
+          "alt": "Campanha Dia do Pai Wine Gourmet: filho entrega vinho ao pai; Um bom vinho nunca é demais; 10% OFF.",
+          "width": 2704,
+          "height": 846,
+          "responsiveSrc": "/images/work/wine-gourmet/dia-do-pai-banner-960.webp"
+        },
+        {
+          "id": "dia-do-pai-pecas",
+          "type": "grid",
+          "size": "full",
+          "layout": "campaign",
+          "images": [
+            {
+              "src": "/images/work/wine-gourmet/dia-do-pai-brinde.webp",
+              "alt": "Dia do Pai: pai serve duas taças de vinho. Este Dia do Pai, ofereça um bom motivo para brindar.",
+              "width": 881,
+              "height": 1101
+            },
+            {
+              "src": "/images/work/wine-gourmet/dia-do-pai-oferta.webp",
+              "alt": "Dia do Pai: Bago de Ouro Reserva Tinto 2023 em composição verde e creme com oferta de 10%.",
+              "width": 881,
+              "height": 1101
+            },
+            {
+              "src": "/images/work/wine-gourmet/dia-do-pai-presente.webp",
+              "alt": "Dia do Pai: detalhe das mãos retirando uma garrafa da embalagem kraft Wine Gourmet, com oferta de 10%.",
+              "width": 1792,
+              "height": 2233,
+              "responsiveSrc": "/images/work/wine-gourmet/dia-do-pai-presente-960.webp"
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-30T03:53:14.000Z"
     },
     {
       "slug": "amorevo",

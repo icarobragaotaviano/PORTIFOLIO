@@ -123,7 +123,7 @@ test('texto editável é escapado tanto em conteúdo quanto em atributos HTML', 
   const escaped = '&lt;script&gt;alert(&quot;x&quot; &amp; &#39;y&#39;)&lt;/script&gt;';
   assert.equal(escape(input), escaped);
   assert.equal(escape(), '');
-  const html = casePage({ ...projects[0], title: input, intro: input, alt: input, note: input }, '/');
+  const html = casePage({ ...projects[0], title: input, intro: input, alt: input, note: input, blocks: [{ type: 'image', src: projects[0].image, alt: input }] }, '/');
   assert.ok(html.includes(`<h1>${escaped}`));
   assert.ok(html.includes(`alt="${escaped}"`));
   assert.ok(html.includes(`content="${escaped}"`));

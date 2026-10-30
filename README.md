@@ -23,6 +23,8 @@ npm run build
 
 As capas têm busca e filtros por área criativa. Cada case abre em uma página com imagens em sua proporção original, textos com hierarquia, ampliação das imagens, créditos, ferramentas e projetos relacionados. Durante a leitura, uma navegação discreta permite voltar à seleção ou passar ao trabalho anterior e ao próximo. O contato fica acessível no cabeçalho do case e no encerramento.
 
+O case Wine Gourmet reproduz as quatro pranchas da apresentação de identidade visual: experiência e mosaico de marca, embalagem, campanhas de vinhos e Dia do Pai. São 15 artes independentes, com ampliação, dimensões originais e versões responsivas. No celular, os mosaicos se reorganizam e os anúncios ganham uma coluna. As composições também podem ser selecionadas nas opções de grade do Estúdio.
+
 As entradas de conteúdo usam movimentos breves de 12 px ao rolar; os estados de interação indicam abertura e ampliação. A navegação usa links nativos e não depende das animações para funcionar. A preferência por movimento reduzido é respeitada. Capas iniciais carregam imediatamente e imagens seguintes usam carregamento sob demanda.
 
 ## Estúdio privado

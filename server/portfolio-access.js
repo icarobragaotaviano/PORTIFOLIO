@@ -60,6 +60,16 @@ function embeddedVideo(value) {
   }
   throw new RequestError('Use um vídeo do YouTube ou Vimeo.');
 }
+function imageRecord(value) {
+  const image = { src: mediaUrl(value?.src), alt: text(value?.alt, 500) };
+  for (const key of ['width', 'height']) {
+    if (value[key] === undefined) continue;
+    if (!Number.isInteger(value[key]) || value[key] < 1 || value[key] > 100000) throw new RequestError('Dimensões de imagem inválidas.');
+    image[key] = value[key];
+  }
+  if (value.responsiveSrc !== undefined) image.responsiveSrc = mediaUrl(value.responsiveSrc);
+  return image;
+}
 function blockRecord(value, index) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new RequestError('Bloco inválido.');
   const type = enumeration(value.type, ['image', 'text', 'grid', 'video', 'embed', 'divider']);
@@ -72,14 +82,18 @@ function blockRecord(value, index) {
     size: enumeration(value.size, ['normal', 'wide', 'full'], 'full'),
     caption: text(value.caption, 1000),
   };
-  if (type === 'image') Object.assign(block, { src: mediaUrl(value.src), alt: text(value.alt, 500) });
+  if (type === 'image') Object.assign(block, imageRecord(value));
   if (type === 'text') {
     block.text = text(value.text, 30000);
     block.format = enumeration(value.format, ['paragraph', 'heading', 'subheading'], 'paragraph');
   }
   if (type === 'grid') {
     if (!Array.isArray(value.images) || value.images.length < 1 || value.images.length > 12) throw new RequestError('O mosaico aceita entre 1 e 12 imagens.');
-    block.images = value.images.map(item => ({ src: mediaUrl(item?.src), alt: text(item?.alt, 500) }));
+    block.images = value.images.map(imageRecord);
+    if (value.layout !== undefined) {
+      if (!['uniform', 'identity', 'triptych', 'campaign'].includes(value.layout)) throw new RequestError('Composição de mosaico inválida.');
+      block.layout = value.layout;
+    }
   }
   if (type === 'embed') block.src = embeddedVideo(value.src);
   if (type === 'video') {
@@ -120,13 +134,15 @@ export function normalizePortfolioProject(value, timestamp = new Date().toISOStr
 }
 
 function seedProjects(base) {
-  const prefix = url => url ? `${base}${url.replace(/^\//, '')}` : '';
+  const prefix = url => !url ? '' : /^https:\/\//i.test(url) || (base !== '/' && url.startsWith(base)) ? url : `${base}${url.replace(/^\//, '')}`;
+  const prefixImage = image => ({ ...image, src: prefix(image.src), ...(image.responsiveSrc !== undefined ? { responsiveSrc: prefix(image.responsiveSrc) } : {}) });
+  const prefixBlock = block => block.type === 'image' ? prefixImage(block) : block.type === 'grid' ? { ...block, images: block.images.map(prefixImage) } : { ...block };
   return originalProjects.map(project => normalizePortfolioProject({
     id: project.slug, slug: project.slug, title: project.title, category: project.category,
-    description: project.intro, cover: prefix(project.image), coverAlt: project.alt,
-    tags: project.services, tools: [], credits: '', client: '', year: project.year,
+    description: project.description ?? project.intro, cover: prefix(project.cover ?? project.image), coverAlt: project.coverAlt ?? project.alt,
+    tags: project.tags ?? project.services, tools: project.tools ?? [], credits: project.credits ?? '', client: project.client ?? '', year: project.year,
     publication: 'published', status: project.status === 'published' ? 'real' : project.status, note: project.note,
-    blocks: [
+    blocks: Array.isArray(project.blocks) ? project.blocks.map(prefixBlock) : [
       { id: 'subtitle', type: 'text', text: project.subtitle, format: 'heading', align: 'left', size: 'normal' },
       { id: 'intro', type: 'text', text: project.intro, align: 'left', size: 'normal' },
       ...[['challenge', 'O desafio', project.challenge], ['concept', 'O conceito', project.concept], ['solution', 'A solução', project.solution]].filter(([, , value]) => value).flatMap(([id, heading, value]) => [
@@ -135,8 +151,8 @@ function seedProjects(base) {
       ]),
       ...(project.gallery || []).map((image, index) => ({ id: `gallery-${index + 1}`, type: 'image', src: prefix(image.image), alt: image.alt, caption: image.caption || '' })),
       ...(project.deliverables.length ? [{ id: 'deliverables', type: 'text', text: `Entregas\n\n${project.deliverables.join(' · ')}` }] : []),
-    ], styles: { background: '#171715', spacing: 24, width: 1400 },
-  }, '2026-10-29T00:00:00.000Z'));
+    ], styles: { background: '#171715', spacing: 24, width: 1400, ...project.styles },
+  }, project.updatedAt || '2026-10-29T00:00:00.000Z'));
 }
 
 async function readJson(request) {

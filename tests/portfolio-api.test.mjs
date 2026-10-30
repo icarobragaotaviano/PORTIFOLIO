@@ -66,12 +66,18 @@ test('session is anonymous, seed remains honest, and private records require aut
     const record = projects.find(item => item.slug === original.slug);
     assert.equal(record.title, original.title);
     assert.equal(record.status, original.status === 'published' ? 'real' : original.status);
-    assert.equal(record.cover, original.image);
-    assert.equal(record.coverAlt, original.alt);
-    assert.equal(record.description, original.intro);
+    assert.equal(record.cover, original.cover ?? original.image);
+    assert.equal(record.coverAlt, original.coverAlt ?? original.alt);
+    assert.equal(record.description, original.description ?? original.intro);
     assert.equal(record.note, original.note);
-    assert.deepEqual(record.tags, original.services);
-    for (const entry of original.gallery || []) {
+    assert.deepEqual(record.tags, original.tags ?? original.services);
+    if (Array.isArray(original.blocks)) {
+      assert.deepEqual(record.blocks.map(block => block.id), original.blocks.map(block => block.id));
+      assert.equal(record.client, original.client ?? '');
+      assert.equal(record.credits, original.credits ?? '');
+      for (const [key, value] of Object.entries(original.styles || {})) assert.equal(record.styles[key], value);
+    }
+    for (const entry of Array.isArray(original.blocks) ? [] : original.gallery || []) {
       assert.ok(record.blocks.some(block => block.type === 'image' && block.src === entry.image && block.alt === entry.alt), `Galeria original preservada: ${original.slug} / ${entry.image}`);
     }
   }
@@ -164,6 +170,39 @@ test('editor blocks, visual settings, tags, tools and credits survive publicatio
   assert.match(html, /--pf-canvas-bg:#111110/);
   assert.match(html, /--pf-canvas-width:1280px/);
   assert.match(html, /youtube-nocookie\.com\/embed\/dQw4w9WgXcQ/);
+});
+
+test('image dimensions, responsive sources and mosaic compositions survive editing and publication', async () => {
+  const h = await harness(); await h.login();
+  const image = { src: originalProject.image, alt: 'Imagem responsiva do projeto', width: 2704, height: 1670, responsiveSrc: '/images/work/wine-gourmet-marca.webp' };
+  const blocks = [
+    { id: 'image', type: 'image', ...image },
+    ...['uniform', 'identity', 'triptych', 'campaign'].map(layout => ({ id: layout, type: 'grid', layout, images: [image, { src: image.src, alt: 'Sem dimensões opcionais' }] })),
+  ];
+  const saved = await h.save(project({ publication: 'published', blocks }));
+  assert.equal(saved.status, 200);
+  const { project: record } = await saved.json();
+  assert.equal(record.blocks[0].width, image.width);
+  assert.equal(record.blocks[0].height, image.height);
+  assert.equal(record.blocks[0].responsiveSrc, image.responsiveSrc);
+  for (const block of record.blocks.slice(1)) {
+    assert.equal(block.layout, block.id);
+    assert.deepEqual(block.images[0], image);
+    assert.equal('width' in block.images[1], false);
+    assert.equal('responsiveSrc' in block.images[1], false);
+  }
+  const restarted = await harness({ dataDir: h.dataDir });
+  const published = (await (await restarted.call('public', { query: '&slug=fixture-job', anonymous: true })).json()).project;
+  assert.deepEqual(published.blocks, record.blocks);
+  for (const invalid of [
+    { width: 0 }, { width: 1.5 }, { height: -1 }, { height: 100001 }, { responsiveSrc: 'javascript:alert(1)' },
+  ]) {
+    assert.equal((await h.save(project({ blocks: [{ id: 'image', type: 'image', ...image, ...invalid }] }))).status, 422);
+    assert.equal((await h.save(project({ blocks: [{ id: 'grid', type: 'grid', images: [{ ...image, ...invalid }] }] }))).status, 422);
+  }
+  for (const layout of ['unknown', 'identity" onclick="alert(1)', '', null]) {
+    assert.equal((await h.save(project({ blocks: [{ id: 'grid', type: 'grid', layout, images: [image] }] }))).status, 422);
+  }
 });
 
 test('duplicate creates an independent draft, reorder is complete and atomic, and delete persists', async () => {
@@ -359,8 +398,18 @@ test('bad credentials, throttling, malformed JSON, body limits and alternate bas
   const seed = (await (await other.call('public')).json()).projects;
   for (const original of originalProjects) {
     const record = seed.find(item => item.slug === original.slug);
-    assert.equal(record.cover, `/portfolio${original.image}`);
-    for (const entry of original.gallery || []) assert.ok(record.blocks.some(block => block.src === `/portfolio${entry.image}`));
+    assert.equal(record.cover, `/portfolio${original.cover ?? original.image}`);
+    if (Array.isArray(original.blocks)) {
+      for (const sourceBlock of original.blocks) {
+        const saved = record.blocks.find(block => block.id === sourceBlock.id);
+        const imagePairs = sourceBlock.type === 'image' ? [[sourceBlock, saved]] : sourceBlock.type === 'grid' ? sourceBlock.images.map((image, index) => [image, saved.images[index]]) : [];
+        for (const [source, image] of imagePairs) {
+          assert.equal(image.src, source.src.startsWith('/') ? `/portfolio${source.src}` : source.src);
+          if (source.responsiveSrc) assert.equal(image.responsiveSrc, source.responsiveSrc.startsWith('/') ? `/portfolio${source.responsiveSrc}` : source.responsiveSrc);
+          for (const key of ['width', 'height']) if (source[key] !== undefined) assert.equal(image[key], source[key]);
+        }
+      }
+    } else for (const entry of original.gallery || []) assert.ok(record.blocks.some(block => block.src === `/portfolio${entry.image}`));
   }
   const uploaded = await other.call('upload', { method: 'POST', body: { name: 'a.png', dataUrl: `data:image/png;base64,${PNG}` } });
   assert.match((await uploaded.json()).url, /^\/portfolio\/api\/portfolio/);

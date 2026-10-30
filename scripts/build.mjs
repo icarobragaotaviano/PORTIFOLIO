@@ -7,6 +7,19 @@ import { studioPage } from '../src/studio-template.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
+export async function validateProjectImages(inputs = projects) {
+  const imageSources = image => [image.src, image.responsiveSrc];
+  const publicDirectory = resolve(root, 'public');
+  for (const project of inputs) {
+    const blockSources = (project.blocks || []).flatMap(block => block.type === 'image' ? imageSources(block) : block.type === 'grid' ? (block.images || []).flatMap(imageSources) : []);
+    for (const image of new Set([project.image, project.cover, ...(project.gallery || []).map(entry => entry.image), ...blockSources].filter(Boolean))) {
+      if (/^https:\/\//i.test(image)) continue;
+      const file = resolve(publicDirectory, image.replace(/^\//, ''));
+      if (!image.startsWith('/') || !file.startsWith(`${publicDirectory}/`) || !(await stat(file).catch(() => null))?.isFile()) throw new Error(`Imagem ausente: ${image}`);
+    }
+  }
+}
+
 export async function build({ outDir = resolve(root, 'dist'), base = '/' } = {}) {
   base = normalizeBase(base);
   // Never permit a custom output to replace project sources or their parents.
@@ -15,12 +28,7 @@ export async function build({ outDir = resolve(root, 'dist'), base = '/' } = {})
     throw new Error('Diretório de saída não pode substituir arquivos-fonte.');
   }
   // Check uploads before clearing the last successful build.
-  for (const project of projects) {
-    for (const image of [project.image, ...(project.gallery || []).map((entry) => entry.image)].filter(Boolean)) {
-      const file = resolve(root, 'public', image.slice(1));
-      if (!(await stat(file).catch(() => null))?.isFile()) throw new Error(`Imagem ausente: ${image}`);
-    }
-  }
+  await validateProjectImages();
   await rm(destination, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
   const retired = new Set(['admin.js', 'admin.css', 'github-cms.js'].map(name => resolve(root, 'public', name)));
