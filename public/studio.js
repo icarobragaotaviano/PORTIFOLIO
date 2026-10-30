@@ -1,4 +1,5 @@
 import { renderPortfolioProject } from './portfolio.js';
+import { importSuppliedProjects } from './project-imports.js';
 
 const base = document.body.dataset.base || '/';
 const root = document.querySelector('#studio-root');
@@ -22,20 +23,20 @@ async function hashPassword(password, salt) {
 }
 
 async function localSeed() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(PROJECTS_KEY) || 'null');
-    if (Array.isArray(saved) && saved.length) return saved;
-  } catch {}
+  let saved;
+  try { saved = JSON.parse(localStorage.getItem(PROJECTS_KEY) || 'null'); } catch {}
   try {
     const url = new URL(`${base}api/portfolio`, location.origin); url.searchParams.set('action', 'public');
     const res = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
     const data = await res.json();
     if (Array.isArray(data?.projects)) {
+      if (Array.isArray(saved)) return importSuppliedProjects(saved, data.projects, localStorage);
       localStorage.setItem(PROJECTS_KEY, JSON.stringify(data.projects));
-      return data.projects;
+      // Mark the supplied case so a later deliberate deletion stays deleted.
+      return importSuppliedProjects(data.projects, data.projects, localStorage);
     }
   } catch {}
-  return [];
+  return Array.isArray(saved) ? saved : [];
 }
 
 async function localApi(action, { method = 'GET', body, id } = {}) {
@@ -228,7 +229,7 @@ function stylesDialog() {
 }
 function blockSettings(id) {
   const block=current.blocks.find(b=>b.id===id);if(!block)return;
-  showDialog(`<div class="dialog-body"><p class="overline">OPÇÕES DO BLOCO</p><h2>Cada detalhe conta.</h2><form id="block-form">${block.type==='text'?`<label for="text-format">Estilo do texto</label><select id="text-format" name="format">${[['paragraph','Parágrafo'],['heading','Título'],['subheading','Subtítulo']].map(([v,t])=>`<option value="${v}" ${block.format===v?'selected':''}>${t}</option>`).join('')}</select>`:''}${block.type==='grid'?`<label for="block-layout">Composição da grade</label><select id="block-layout" name="layout">${[['uniform','Grade regular'],['identity','Mosaico de identidade'],['triptych','Três colunas'],['campaign','Mosaico de campanha']].map(([v,t])=>`<option value="${v}" ${(block.layout||'uniform')===v?'selected':''}>${t}</option>`).join('')}</select>`:''}<label for="block-align">Alinhamento</label><select id="block-align" name="align">${[['left','À esquerda'],['center','Centralizado'],['right','À direita']].map(([v,t])=>`<option value="${v}" ${block.align===v?'selected':''}>${t}</option>`).join('')}</select><label for="block-size">Largura</label><select id="block-size" name="size">${[['full','Largura total'],['wide','Ampla'],['normal','Com margens']].map(([v,t])=>`<option value="${v}" ${(block.size||'full')===v?'selected':''}>${t}</option>`).join('')}</select>${block.type==='image'?`<label for="block-alt">Descrição da imagem</label><input id="block-alt" name="alt" value="${e(block.alt)}">`:''}<label for="block-caption">Legenda</label><input id="block-caption" name="caption" value="${e(block.caption)}">${block.type==='grid'?'<p class="field-hint">Para alterar a sequência das fotos, use os controles abaixo.</p><div class="grid-order-list">'+block.images.map((img,i)=>`<div><img src="${e(img.src)}" alt="Foto ${i+1}"><span>Foto ${i+1}</span><button type="button" class="icon-btn" data-action="grid-up" data-block-id="${e(id)}" data-index="${i}" aria-label="Mover foto ${i+1} para antes" ${i===0?'disabled':''}>${icon('up')}</button><button type="button" class="icon-btn" data-action="grid-down" data-block-id="${e(id)}" data-index="${i}" aria-label="Mover foto ${i+1} para depois" ${i===block.images.length-1?'disabled':''}>${icon('down')}</button></div>`).join('')+'</div>':''}<div class="dialog-buttons"><button type="submit" class="btn btn-primary">Aplicar ao bloco</button></div></form></div>`,'small-dialog');
+  showDialog(`<div class="dialog-body"><p class="overline">OPÇÕES DO BLOCO</p><h2>Cada detalhe conta.</h2><form id="block-form">${block.type==='text'?`<label for="text-format">Estilo do texto</label><select id="text-format" name="format">${[['paragraph','Parágrafo'],['heading','Título'],['subheading','Subtítulo']].map(([v,t])=>`<option value="${v}" ${block.format===v?'selected':''}>${t}</option>`).join('')}</select>`:''}${block.type==='grid'?`<label for="block-layout">Composição da grade</label><select id="block-layout" name="layout">${[['uniform','Grade regular'],['identity','Mosaico de identidade'],['triptych','Três colunas'],['campaign','Mosaico de campanha'],['brand-showcase','Mosaico de marca e aplicações']].map(([v,t])=>`<option value="${v}" ${(block.layout||'uniform')===v?'selected':''}>${t}</option>`).join('')}</select>`:''}<label for="block-align">Alinhamento</label><select id="block-align" name="align">${[['left','À esquerda'],['center','Centralizado'],['right','À direita']].map(([v,t])=>`<option value="${v}" ${block.align===v?'selected':''}>${t}</option>`).join('')}</select><label for="block-size">Largura</label><select id="block-size" name="size">${[['full','Largura total'],['wide','Ampla'],['normal','Com margens']].map(([v,t])=>`<option value="${v}" ${(block.size||'full')===v?'selected':''}>${t}</option>`).join('')}</select>${block.type==='image'?`<label for="block-alt">Descrição da imagem</label><input id="block-alt" name="alt" value="${e(block.alt)}">`:''}<label for="block-caption">Legenda</label><input id="block-caption" name="caption" value="${e(block.caption)}">${block.type==='grid'?'<p class="field-hint">Para alterar a sequência das fotos, use os controles abaixo.</p><div class="grid-order-list">'+block.images.map((img,i)=>`<div><img src="${e(img.src)}" alt="Foto ${i+1}"><span>Foto ${i+1}</span><button type="button" class="icon-btn" data-action="grid-up" data-block-id="${e(id)}" data-index="${i}" aria-label="Mover foto ${i+1} para antes" ${i===0?'disabled':''}>${icon('up')}</button><button type="button" class="icon-btn" data-action="grid-down" data-block-id="${e(id)}" data-index="${i}" aria-label="Mover foto ${i+1} para depois" ${i===block.images.length-1?'disabled':''}>${icon('down')}</button></div>`).join('')+'</div>':''}<div class="dialog-buttons"><button type="submit" class="btn btn-primary">Aplicar ao bloco</button></div></form></div>`,'small-dialog');
   document.querySelector('#block-form').onsubmit=event=>{event.preventDefault();const f=new FormData(event.target);for(const key of ['align','size','caption','alt','format','layout'])if(f.has(key))block[key]=f.get(key);markDirty();dialog.close();renderCanvas();};
 }
 function mediaDialog(type,id) {

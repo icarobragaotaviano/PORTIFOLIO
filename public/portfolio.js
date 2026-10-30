@@ -1,3 +1,5 @@
+import { importSuppliedProjects } from './project-imports.js';
+
 /** Shared, dependency-free presentation for the public portfolio and editor preview. */
 export const escapePortfolio = (value = '') => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
@@ -139,9 +141,12 @@ export function renderPortfolioBlock(block, base = '/', { eager = false } = {}) 
   }
   if (block.type === 'grid') {
     // Only the documented layouts become classes; user text cannot become CSS.
-    const layout = ['identity', 'triptych', 'campaign'].includes(block.layout) ? block.layout : 'uniform';
+    const layout = ['identity', 'triptych', 'campaign', 'brand-showcase'].includes(block.layout) ? block.layout : 'uniform';
     const sizes = layout === 'identity' ? '(max-width: 650px) 90vw, 50vw' : layout === 'triptych' ? '(max-width: 650px) 90vw, 33vw' : layout === 'campaign' ? '(max-width: 650px) 90vw, 66vw' : '50vw';
-    return `<div class="${classes} pf-grid-layout-${layout}"><div class="pf-image-grid pf-grid-${layout}">${list(block.images).map((item, index) => imageMarkup(typeof item === 'string' ? { src: item } : item, base, { eager: eager && index === 0, sizes })).join('')}</div>${block.caption ? `<p class="pf-block-caption">${escapePortfolio(block.caption)}</p>` : ''}</div>`;
+    const imageSizes = index => layout === 'brand-showcase'
+      ? `(max-width: 650px) ${[1, 3].includes(index) ? '44vw' : '90vw'}, ${index === 4 ? '100vw' : index === 0 ? '50vw' : '25vw'}`
+      : sizes;
+    return `<div class="${classes} pf-grid-layout-${layout}"><div class="pf-image-grid pf-grid-${layout}">${list(block.images).map((item, index) => imageMarkup(typeof item === 'string' ? { src: item } : item, base, { eager: eager && index === 0, sizes: imageSizes(index) })).join('')}</div>${block.caption ? `<p class="pf-block-caption">${escapePortfolio(block.caption)}</p>` : ''}</div>`;
   }
   if (block.type === 'video') {
     const embedded = portfolioEmbedURL(block.src || block.url);
@@ -260,12 +265,14 @@ async function publicProjects(base, slug = '') {
   let local;
   try { local = JSON.parse(localStorage.getItem('ib_studio_projects_v1') || 'null'); } catch {}
   let data;
-  const url = `${basePath(base)}api/portfolio?action=public${slug ? `&slug=${encodeURIComponent(slug)}` : ''}`;
+  // Keep the selected case and its previous/next links in the same collection.
+  const url = `${basePath(base)}api/portfolio?action=public`;
   try {
     const response = await fetch(url, { headers: { Accept: 'application/json' }, credentials: 'same-origin' });
     if (response.ok) data = await response.json();
   } catch { /* The local Studio remains available when its server is offline. */ }
   if (Array.isArray(local) && local.length) {
+    local = importSuppliedProjects(local, list(data?.projects), localStorage);
     // Refresh this newly supplied case in older local Studio collections while
     // preserving other local work and later edits made by the owner.
     const wine = data?.project?.slug === 'winegourmet' ? data.project : list(data?.projects).find(item => item.slug === 'winegourmet');

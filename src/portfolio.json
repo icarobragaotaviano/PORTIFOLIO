@@ -267,6 +267,105 @@
           "alt": "Padrão original em traços claros sobre fundo azul, derivado das formas da marca EndoAfetos."
         }
       ]
+    },
+    {
+      "slug": "judo-jorge-queiroz",
+      "title": "Jorge Queiroz Judô",
+      "subtitle": "Identidade em movimento.",
+      "category": "Identidade visual",
+      "year": "Ano não informado",
+      "number": "04",
+      "status": "published",
+      "image": "/images/work/judo-jorge-queiroz/judocas.webp",
+      "alt": "Composição com dois judocas em uniformes branco e azul, aplicações da marca, monogramas e grafismos em dourado e bege.",
+      "services": [
+        "Logotipo",
+        "Identidade visual",
+        "Aplicações de marca"
+      ],
+      "intro": "Identidade visual para Jorge Queiroz Judô. Um sistema que reúne o gesto dos judocas, a força do símbolo circular e aplicações em uniformes.",
+      "challenge": "Reunir movimento, tradição e reconhecimento em uma identidade ligada ao judô.",
+      "concept": "O encontro entre o gesto dos judocas, formas circulares e referências visuais japonesas.",
+      "solution": "A assinatura principal, o monograma e os grafismos compartilham azul profundo, vermelho, dourado e bege. As aplicações em tecido exploram o contraste entre uniformes claros e escuros.",
+      "deliverables": [
+        "Assinatura principal",
+        "Monograma JQ",
+        "Grafismos de apoio",
+        "Apresentação de aplicações em uniformes"
+      ],
+      "note": "Aplicações em uniformes apresentadas em mockups.",
+      "gallery": [
+        {
+          "image": "/images/work/judo-jorge-queiroz/marca-principal.webp",
+          "alt": "Assinatura Jorge Queiroz Judô sobre fundo bege, com judocas em movimento, símbolo circular azul e vermelho e caracteres japoneses dourados."
+        },
+        {
+          "image": "/images/work/judo-jorge-queiroz/bordados-judogi-preto.webp",
+          "alt": "Mockup de judogi preto com faixa dourada, grafismos japoneses e bordados da marca e do monograma Jorge Queiroz Judô."
+        },
+        {
+          "image": "/images/work/judo-jorge-queiroz/monograma.webp",
+          "alt": "Monograma JQ dourado com referência à arquitetura japonesa e caracteres de judô, sobre fundo azul profundo."
+        },
+        {
+          "image": "/images/work/judo-jorge-queiroz/marca-judogi-branco.webp",
+          "alt": "Mockup da marca bordada no peito de um judogi branco, em azul profundo, vermelho e dourado."
+        },
+        {
+          "image": "/images/work/judo-jorge-queiroz/judocas.webp",
+          "alt": "Composição com dois judocas em uniformes branco e azul, aplicações da marca, monogramas e grafismos em dourado e bege."
+        }
+      ],
+      "description": "Identidade em movimento. Marca, monograma e aplicações em uniformes para Jorge Queiroz Judô.",
+      "client": "Jorge Queiroz Judô",
+      "styles": {
+        "background": "#881c20",
+        "spacing": 0,
+        "width": 1400
+      },
+      "blocks": [
+        {
+          "id": "identidade-e-aplicacoes",
+          "type": "grid",
+          "size": "full",
+          "layout": "brand-showcase",
+          "images": [
+            {
+              "src": "/images/work/judo-jorge-queiroz/marca-principal.webp",
+              "alt": "Assinatura Jorge Queiroz Judô sobre fundo bege, com judocas em movimento, símbolo circular azul e vermelho e caracteres japoneses dourados.",
+              "width": 1336,
+              "height": 1857,
+              "responsiveSrc": "/images/work/judo-jorge-queiroz/marca-principal-960.webp"
+            },
+            {
+              "src": "/images/work/judo-jorge-queiroz/bordados-judogi-preto.webp",
+              "alt": "Mockup de judogi preto com faixa dourada, grafismos japoneses e bordados da marca e do monograma Jorge Queiroz Judô.",
+              "width": 652,
+              "height": 1857
+            },
+            {
+              "src": "/images/work/judo-jorge-queiroz/monograma.webp",
+              "alt": "Monograma JQ dourado com referência à arquitetura japonesa e caracteres de judô, sobre fundo azul profundo.",
+              "width": 652,
+              "height": 913
+            },
+            {
+              "src": "/images/work/judo-jorge-queiroz/marca-judogi-branco.webp",
+              "alt": "Mockup da marca bordada no peito de um judogi branco, em azul profundo, vermelho e dourado.",
+              "width": 652,
+              "height": 1857
+            },
+            {
+              "src": "/images/work/judo-jorge-queiroz/judocas.webp",
+              "alt": "Composição com dois judocas em uniformes branco e azul, aplicações da marca, monogramas e grafismos em dourado e bege.",
+              "width": 2704,
+              "height": 1857,
+              "responsiveSrc": "/images/work/judo-jorge-queiroz/judocas-960.webp"
+            }
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-30T04:50:11.940Z"
     }
   ]
 }

@@ -108,10 +108,18 @@
 .pf-grid-campaign>.pf-figure:nth-child(1) { grid-column:1; grid-row:1; }
 .pf-grid-campaign>.pf-figure:nth-child(2) { grid-column:1; grid-row:2; }
 .pf-grid-campaign>.pf-figure:nth-child(3) { grid-column:2; grid-row:1 / 3; }
-.pf-grid-identity .pf-image-button>img,.pf-grid-campaign .pf-image-button>img { height:100%; object-fit:contain; }
+.pf-grid-brand-showcase { grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr)); gap:1.183432cqw; aspect-ratio:2704 / 3746; align-items:stretch; }
+.pf-grid-brand-showcase>.pf-figure:nth-child(1) { grid-column:1 / 3; grid-row:1 / 3; }
+.pf-grid-brand-showcase>.pf-figure:nth-child(2) { grid-column:3; grid-row:1 / 3; }
+.pf-grid-brand-showcase>.pf-figure:nth-child(3) { grid-column:4; grid-row:1; }
+.pf-grid-brand-showcase>.pf-figure:nth-child(4) { grid-column:4; grid-row:2 / 4; }
+/* The transparent corner leaves the judogi beneath it visible and clickable. */
+.pf-grid-brand-showcase>.pf-figure:nth-child(5) { grid-column:1 / 5; grid-row:3 / 5; clip-path:polygon(0 0,75% 0,75% 49.5%,100% 49.5%,100% 100%,0 100%); }
+.pf-grid-identity .pf-image-button>img,.pf-grid-campaign .pf-image-button>img,.pf-grid-brand-showcase .pf-image-button>img { height:100%; object-fit:contain; }
 .pf-project-canvas>.pf-grid-layout-identity { margin-top:1.775148cqw; }
 .pf-project-canvas>.pf-grid-layout-triptych,.pf-project-canvas>.pf-grid-layout-campaign { margin-top:1.183432cqw; }
 .pf-project:has(.pf-grid-identity) .pf-project-canvas { padding:clamp(8px,1.775148cqw,24px); }
+.pf-project:has(.pf-grid-brand-showcase) .pf-project-canvas { padding:clamp(8px,1.183432cqw,24px); }
 @media(max-width:650px) {
   .pf-grid-identity { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-items:start; }
   .pf-grid-identity>.pf-figure:nth-child(n) { grid-column:auto; grid-row:auto; }
@@ -124,7 +132,14 @@
   .pf-grid-campaign { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
   .pf-grid-campaign>.pf-figure:nth-child(n) { grid-column:auto; grid-row:auto; }
   .pf-grid-campaign>.pf-figure:nth-child(3) { grid-column:1 / 3; }
-  .pf-grid-identity .pf-image-button>img,.pf-grid-campaign .pf-image-button>img { height:auto; }
+  .pf-grid-brand-showcase { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:none; gap:10px; aspect-ratio:auto; align-items:start; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(n) { grid-column:auto; grid-row:auto; clip-path:none; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(1) { grid-column:1 / 3; grid-row:1; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(2) { grid-column:1; grid-row:3; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(3) { grid-column:1 / 3; grid-row:2; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(4) { grid-column:2; grid-row:3; }
+  .pf-grid-brand-showcase>.pf-figure:nth-child(5) { grid-column:1 / 3; grid-row:4; }
+  .pf-grid-identity .pf-image-button>img,.pf-grid-campaign .pf-image-button>img,.pf-grid-brand-showcase .pf-image-button>img { height:auto; }
 }
 .pf-block video { display:block; width:100%; max-height:90vh; background:#111; }
 .pf-embed { position:relative; aspect-ratio:16/9; background:#111; }

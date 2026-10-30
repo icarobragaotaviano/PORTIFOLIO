@@ -91,7 +91,7 @@ function blockRecord(value, index) {
     if (!Array.isArray(value.images) || value.images.length < 1 || value.images.length > 12) throw new RequestError('O mosaico aceita entre 1 e 12 imagens.');
     block.images = value.images.map(imageRecord);
     if (value.layout !== undefined) {
-      if (!['uniform', 'identity', 'triptych', 'campaign'].includes(value.layout)) throw new RequestError('Composição de mosaico inválida.');
+      if (!['uniform', 'identity', 'triptych', 'campaign', 'brand-showcase'].includes(value.layout)) throw new RequestError('Composição de mosaico inválida.');
       block.layout = value.layout;
     }
   }
